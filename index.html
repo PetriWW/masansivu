@@ -11,7 +11,6 @@
 	<style>
 		/* --- KORJAUKSET KUVASUHTEISIIN JA KESKITYKSIIN --- */
 
-		/* Pakottaa KAIKKI gallerian pikkukuvat täsmälleen saman kokoisiksi (4:3) */
 		.gallery article .image {
 			display: block;
 			width: 100%;
@@ -27,7 +26,6 @@
 			display: block;
 		}
 
-		/* Etusivun 2 vierekkäistä kuvaa täysin tasakokoisiksi */
 		.masa-proof-gallery img {
 			width: 100%;
 			aspect-ratio: 4 / 3;
@@ -35,7 +33,6 @@
 			display: block;
 		}
 
-		/* Korjaa painikkeiden tekstin vertikaalisen keskityksen */
 		.button, input[type="submit"], input[type="reset"], input[type="button"], button {
 			display: inline-flex !important;
 			align-items: center;
@@ -45,14 +42,14 @@
 			padding: 0 2em !important;
 		}
 
-		/* --- MASAN TYÖHUONE -JULISTE (MODERNI VERSIO A) --- */
+		/* --- MASAN TYÖHUONE -JULISTE (PELKKÄ TAUSTAVÄRI) --- */
 		#masa-hero {
 			position: relative;
 			min-height: 100vh;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			background-color: #d0d0d0; /* Neutraali harmaa taustaväri */
+			background-color: #d0d0d0; /* Vain ja ainoastaan neutraali harmaa taustaväri */
 			padding: 4rem 1.5rem;
 			z-index: 1;
 		}
@@ -60,11 +57,12 @@
 		.masa-poster {
 			background: #ffffff;
 			border: 2px solid #111111;
+			border-radius: 12px;
 			max-width: 1050px;
 			width: 100%;
 			padding: 4.5rem 4rem;
 			position: relative;
-			box-shadow: 0 20px 60px rgba(0,0,0,0.3); /* Vahva varjo erottaa paperin taustasta */
+			box-shadow: 0 20px 60px rgba(0,0,0,0.3);
 		}
 
 		/* Kulmakoristeet */
@@ -77,24 +75,24 @@
 			border: 3px solid #111111;
 			pointer-events: none;
 		}
-		.masa-poster::before { top: 12px; left: 12px; border-right: none; border-bottom: none; }
-		.masa-poster::after { top: 12px; right: 12px; border-left: none; border-bottom: none; }
-		.masa-corners::before { bottom: 12px; left: 12px; border-right: none; border-top: none; }
-		.masa-corners::after { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+		.masa-poster::before { top: 12px; left: 12px; border-right: none; border-bottom: none; border-top-left-radius: 8px; }
+		.masa-poster::after { top: 12px; right: 12px; border-left: none; border-bottom: none; border-top-right-radius: 8px; }
+		.masa-corners::before { bottom: 12px; left: 12px; border-right: none; border-top: none; border-bottom-left-radius: 8px; }
+		.masa-corners::after { bottom: 12px; right: 12px; border-left: none; border-top: none; border-bottom-right-radius: 8px; }
 
-		/* Typografia: Masan toivoma iso kirjainkoko */
+		/* Typografia */
 		.masa-poster, .masa-poster * {
 			font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
 			color: #111111;
 			text-transform: uppercase;
-			letter-spacing: 0.04em;
+			letter-spacing: 0.03em;
 		}
 
 		.masa-header h1 {
 			font-size: 2.25rem !important;
 			font-weight: 900 !important;
 			margin: 0 0 0.5rem 0 !important;
-			letter-spacing: 0.08em;
+			letter-spacing: 0.06em;
 		}
 
 		.masa-contact-bar {
@@ -114,7 +112,7 @@
 			margin-bottom: 2rem;
 		}
 
-		.masa-bio-text p {
+		.masa-bio-text p, .masa-full-text p {
 			font-size: 0.95rem !important;
 			line-height: 1.75 !important;
 			margin-bottom: 1.25rem !important;
@@ -125,15 +123,9 @@
 			height: auto;
 			display: block;
 			border: 2px solid #111111;
+			border-radius: 8px;
 		}
 
-		.masa-full-text p {
-			font-size: 0.95rem !important;
-			line-height: 1.75 !important;
-			margin-bottom: 1.25rem !important;
-		}
-
-		/* Masan 2 kuvaa rinnakkain selitteillä */
 		.masa-proof-gallery {
 			display: grid;
 			grid-template-columns: 1fr 1fr;
@@ -149,6 +141,7 @@
 		.masa-proof-gallery a.image {
 			display: block;
 			border: 2px solid #111111;
+			border-radius: 8px;
 			overflow: hidden;
 			margin-bottom: 0.75rem;
 		}
@@ -167,10 +160,38 @@
 		}
 
 		@media screen and (max-width: 840px) {
-			#masa-hero { padding: 3rem 1.5rem; }
-			.masa-bio-grid { grid-template-columns: 1fr; gap: 2rem; }
-			.masa-bio-image { max-width: 320px; margin: 0 auto; }
-			.masa-proof-gallery { grid-template-columns: 1fr; }
+			#masa-hero {
+				padding: 1.5rem 0.75rem;
+			}
+			.masa-poster {
+				padding: 2rem 1.5rem;
+				border-radius: 8px;
+			}
+			.masa-header h1 {
+				font-size: 1.75rem !important;
+			}
+			.masa-contact-bar {
+				font-size: 0.75rem !important;
+				padding-bottom: 1rem;
+				margin-bottom: 1.5rem;
+			}
+			.masa-bio-grid {
+				grid-template-columns: 1fr;
+				gap: 1.5rem;
+			}
+			.masa-bio-image {
+				max-width: 100%;
+				width: 280px;
+				margin: 0 auto;
+			}
+			.masa-proof-gallery {
+				grid-template-columns: 1fr;
+				gap: 1.5rem;
+				margin-top: 2rem;
+			}
+			.masa-poster::before, .masa-poster::after, .masa-corners::before, .masa-corners::after {
+				display: none;
+			}
 		}
 	</style>
 </head>
@@ -179,7 +200,7 @@
 <!-- Wrapper -->
 <div id="wrapper" class="divided">
 
-	<!-- 1. MASAN ETUSIVU (VERSIO A: Neutraali taustaväri + Keskitetty paperi) -->
+	<!-- 1. MASAN ETUSIVU (VERSIO A: Neutraali taustaväri + Pehmennetty paperi) -->
 	<section id="masa-hero">
 		<div class="masa-poster">
 			<div class="masa-corners"></div>
