@@ -4,199 +4,395 @@
 	<title>Masan Puutyöt | Matti Salo, Eurajoki</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta name="description" content="Masan Puutyöt - Uniikit käsityökalusteet, äijäluola-varusteet, Harald-kellot ja kelohirsirakentamisen konsultointi." />
+	<meta name="description" content="Masan Puutyöt - Uniikit käsityökalusteet, äijäluola-varusteet, Harald-kellot ja kelohirsirakentaminen." />
 	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
 
-	<!-- Kuvien sovitus galleriaan, ettei ruudukko hajoa erikokoisista kuvista -->
 	<style>
-		.gallery img {
-			object-fit: cover;
+		/* --- KORJAUKSET KUVASUHTEISIIN JA KESKITYKSIIN --- */
+
+		/* Pakottaa KAIKKI gallerian pikkukuvat täsmälleen saman kokoisiksi (4:3) */
+		.gallery article .image {
+			display: block;
+			width: 100%;
+			aspect-ratio: 4 / 3;
+			overflow: hidden;
+		}
+
+		.gallery article .image img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover !important;
+			object-position: center !important;
+			display: block;
+		}
+
+		/* Etusivun 2 vierekkäistä kuvaa täysin tasakokoisiksi */
+		.masa-proof-gallery img {
+			width: 100%;
+			aspect-ratio: 4 / 3;
+			object-fit: cover !important;
+			display: block;
+		}
+
+		/* Korjaa painikkeiden tekstin vertikaalisen keskityksen */
+		.button, input[type="submit"], input[type="reset"], input[type="button"], button {
+			display: inline-flex !important;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+			line-height: 1 !important;
+			padding: 0 2em !important;
+		}
+
+		/* --- MASAN TYÖHUONE -JULISTE (MODERNI VERSIO A) --- */
+		#masa-hero {
+			position: relative;
+			min-height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #d0d0d0; /* Neutraali harmaa taustaväri */
+			padding: 4rem 1.5rem;
+			z-index: 1;
+		}
+
+		.masa-poster {
+			background: #ffffff;
+			border: 2px solid #111111;
+			max-width: 1050px;
+			width: 100%;
+			padding: 4.5rem 4rem;
+			position: relative;
+			box-shadow: 0 20px 60px rgba(0,0,0,0.3); /* Vahva varjo erottaa paperin taustasta */
+		}
+
+		/* Kulmakoristeet */
+		.masa-poster::before, .masa-poster::after,
+		.masa-corners::before, .masa-corners::after {
+			content: '';
+			position: absolute;
+			width: 32px;
+			height: 32px;
+			border: 3px solid #111111;
+			pointer-events: none;
+		}
+		.masa-poster::before { top: 12px; left: 12px; border-right: none; border-bottom: none; }
+		.masa-poster::after { top: 12px; right: 12px; border-left: none; border-bottom: none; }
+		.masa-corners::before { bottom: 12px; left: 12px; border-right: none; border-top: none; }
+		.masa-corners::after { bottom: 12px; right: 12px; border-left: none; border-top: none; }
+
+		/* Typografia: Masan toivoma iso kirjainkoko */
+		.masa-poster, .masa-poster * {
+			font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
+			color: #111111;
+			text-transform: uppercase;
+			letter-spacing: 0.04em;
+		}
+
+		.masa-header h1 {
+			font-size: 2.25rem !important;
+			font-weight: 900 !important;
+			margin: 0 0 0.5rem 0 !important;
+			letter-spacing: 0.08em;
+		}
+
+		.masa-contact-bar {
+			font-size: 0.85rem !important;
+			line-height: 1.6 !important;
+			border-bottom: 2px solid #111111;
+			padding-bottom: 1.5rem;
+			margin-bottom: 2.5rem;
+			font-weight: 700;
+		}
+
+		.masa-bio-grid {
+			display: grid;
+			grid-template-columns: 1fr 300px;
+			gap: 3rem;
+			align-items: start;
+			margin-bottom: 2rem;
+		}
+
+		.masa-bio-text p {
+			font-size: 0.95rem !important;
+			line-height: 1.75 !important;
+			margin-bottom: 1.25rem !important;
+		}
+
+		.masa-bio-image img {
+			width: 100%;
+			height: auto;
+			display: block;
+			border: 2px solid #111111;
+		}
+
+		.masa-full-text p {
+			font-size: 0.95rem !important;
+			line-height: 1.75 !important;
+			margin-bottom: 1.25rem !important;
+		}
+
+		/* Masan 2 kuvaa rinnakkain selitteillä */
+		.masa-proof-gallery {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 2rem;
+			margin: 3rem 0 2rem 0;
+		}
+
+		.masa-proof-gallery figure {
+			margin: 0;
+			text-align: center;
+		}
+
+		.masa-proof-gallery a.image {
+			display: block;
+			border: 2px solid #111111;
+			overflow: hidden;
+			margin-bottom: 0.75rem;
+		}
+
+		.masa-proof-gallery figcaption {
+			font-size: 0.85rem !important;
+			font-weight: 900 !important;
+			line-height: 1.4 !important;
+		}
+
+		.masa-cta {
+			text-align: center;
+			margin-top: 3rem;
+			border-top: 1px solid #e0e0e0;
+			padding-top: 2rem;
+		}
+
+		@media screen and (max-width: 840px) {
+			#masa-hero { padding: 3rem 1.5rem; }
+			.masa-bio-grid { grid-template-columns: 1fr; gap: 2rem; }
+			.masa-bio-image { max-width: 320px; margin: 0 auto; }
+			.masa-proof-gallery { grid-template-columns: 1fr; }
 		}
 	</style>
 </head>
 <body class="is-preload">
 
 <!-- Wrapper -->
-<div id="wrapper">
+<div id="wrapper" class="divided">
 
-	<!-- Intro -->
-	<section class="intro">
-		<header>
-			<h1>Masan Puutyöt</h1>
-			<p>Käsintehtyjä kalusteita, kelohirsirakentamista ja konesuunnittelua Eurajoelta.<br />
-				<strong>"Valmistan kaikkea mahdollista... mahdottomatkin mahdollisia, mutta vähän kalliimpia."</strong></p>
-			<ul class="actions">
-				<li><a href="#first" class="arrow scrolly"><span class="label">Tutustu töihin</span></a></li>
-			</ul>
-		</header>
-		<div class="content">
-			<span class="image fill" data-position="center"><img src="images/fulls/masa.jpg" alt="Matti Salo" /></span>
-		</div>
-	</section>
+	<!-- 1. MASAN ETUSIVU (VERSIO A: Neutraali taustaväri + Keskitetty paperi) -->
+	<section id="masa-hero">
+		<div class="masa-poster">
+			<div class="masa-corners"></div>
 
-	<!-- Section: Kuka on Masa -->
-	<section id="first">
-		<header>
-			<h2>Kuka on Masa?</h2>
-		</header>
-		<div class="content">
-			<p><strong>Olen 79-vuotias äijä.</strong> Koulutukseltani olen ammattisotilas... Sekoitin käsitteet oma-aloitteisuus ja omavaltaisuus, jonka takia siirryin siviiliin. Sitten seurasi sitä ja tätä – enimmäkseen sitä!</p>
-			<p>Vuonna 2023 jäin eläkkeelle konesuunnittelijan tehtävistä. Nyt eläkeläisenä valmistan oheisen kuvaston tuotteita ja kaikkea muuta tilaustyönä.</p>
-			<p>Nuorena harrastin menestyksekkäästi kilpauintia, ja vuonna 1966 olin Helsingin Messuhallissa voittamassa rock-yhtyeiden Suomen mestaruuden. Haulikkoammunnassa olen kilpaillut koko ikäni; lajista saldona on yksi Suomen mestaruus sekä pari Suomen ennätystä.</p>
-			<p>Kouluaikana radikalismi aiheutti allergian opiskelua kohtaan, jonka oireina oli mm. koulussakäynnin ja varsinkin läksyjen lukujen laiminlyönti. Tämä johti lopulta katastrofiin. En omaa kouluajaltani minkäänlaista todistusta.</p>
-		</div>
-	</section>
+			<div class="masa-header">
+				<h1>Masan Puutyöt</h1>
+				<div class="masa-contact-bar">
+					Matti Salo &bull; Mäntytie 3, 27100 Eurajoki<br />
+					Puh. 045 805 2009 &bull; masa.salo47@gmail.com
+				</div>
+			</div>
 
-	<!-- Section: Villa-Marma -->
-	<section>
-		<header>
-			<h2>Mestarinäyte: Hirsilinna Villa-Marma</h2>
-		</header>
-		<div class="content">
-			<p><strong>Eniten kunnioitan saavutuksistani</strong> suunnittelemaani ja toteuttamaani kelohirsilinnaa. Lattia-alaa 350m2, lisäksi terassi 140m2, harjakorkeus 11,5m, 650m3 ylisuurta keloa... Melkoinen pirtti!</p>
-			<p>Valmistin pirtin eteen itse pienillä hyppysilläni noin 7 000 työtuntia: tein itse kaikki huonekalut, valaisimet, ovet ja ikkunat. <em>En ole kauppaamassa tällaista pirttiä, mutta mikäli olet kiinnostunut, voin konsultoida hanketta ammattitaidollani.</em></p>
+			<div class="masa-bio-grid">
+				<div class="masa-bio-text">
+					<p>Olen 79-vuotias äijä. Koulutukseltani ammattisotilas. Sekoitin käsitteet oma-aloitteellisuus ja omavaltaisuus, jonka takia siirryin siviiliin... sitten seurasi sitä ja tätä... enimmäkseen sitä.</p>
+					<p>Vuonna 2023 jäin eläkkeelle konesuunnittelijana. Nyt valmistan kaikkea mahdollista... mahdottomatkin mahdollisia, mutta vähän kalliimpia.</p>
+					<p>Kouluaikana radikalismi aiheutti allergian opiskelua kohtaan, jonka oireina oli mm. koulussakäynnin ja varsinkin läksyjen lukujen laiminlyönti. Tämä johti lopulta katastrofiin. En omaa kouluajaltani minkäänlaista todistusta.</p>
+				</div>
+				<div class="masa-bio-image">
+					<img src="images/masa.jpg" alt="Matti Salo" />
+				</div>
+			</div>
 
-			<div class="gallery">
-				<!-- Rivi 1 (50% + 25% + 25% = 100%) -->
-				<a href="images/fulls/IMGP1381.JPG" class="landscape"><img src="images/thumbs/IMGP1381.JPG" alt="Villa-Marma ulkoa" /></a>
-				<a href="images/fulls/IMGP1252.jpg"><img src="images/thumbs/IMGP1252.jpg" alt="8 hengen ruokailukalusto" /></a>
-				<a href="images/fulls/IMGP1267.jpg"><img src="images/thumbs/IMGP1267.jpg" alt="Massiivinen sohvakalusto" /></a>
-				<!-- Rivi 2 (50% + 25% + 25% = 100%) -->
-				<a href="images/fulls/IMGP1308.JPG" class="landscape"><img src="images/thumbs/IMGP1308.JPG" alt="Terassikalusteet porontaljaverhoilulla" /></a>
-				<a href="images/fulls/1605271540_IMG_3670.jpg"><img src="images/thumbs/1605271540_IMG_3670.jpg" alt="Makuuhuoneen kelokalusteet" /></a>
-				<a href="images/fulls/1605271545_IMG_3677.jpg"><img src="images/thumbs/1605271545_IMG_3677.jpg" alt="Työhuoneen kalusteet" /></a>
-				<!-- Rivi 3 (50% + 50% = 100%) -->
-				<a href="images/fulls/IMG_20260901_0003.jpg" class="landscape"><img src="images/thumbs/IMG_20260901_0003.jpg" alt="Villan löylyhuone" /></a>
-				<a href="images/fulls/DSCN1762.JPG" class="landscape"><img src="images/thumbs/DSCN1762.JPG" alt="Saunalauteet" /></a>
+			<div class="masa-full-text">
+				<p>Nuorena harrastin menestyksellisesti kilpauintia. Vuonna 1966 olin Hesan Messuhallissa voittamassa Rock-yhtyeitten SM:n. Haulikkoammunnassa olen kilpaillut koko ikäni, jossa lajissa yksi Suomen mestaruus ja pari Suomen ennätystä.</p>
+				<p>Enemmittä puheitta itse asiaan. Eniten arvostan suunnittelemaani ja toteuttamaani hirsilinnaa Villa-Marmaa. Lattia-ala 350 m², lisäksi terassi 140 m², harjakorkeus 11,5 m, 650 m³ ylisuurta keloa. Valmistin itse kaikki huonekalut, valaisimet, ikkunat, ovet ja tein puuhan eteen luokkaa 7 000 työtuntia. Melkoinen pirtti.</p>
+				<p>En ole kauppaamassa tällaista pirttiä... jos joku on kiinnostunut, voin konsultoida projektia tiedoillani.</p>
+			</div>
+
+			<!-- Kaksi kuvaa rinnakkain selitteineen -->
+			<div class="masa-proof-gallery lightbox">
+				<figure>
+					<a href="images/fulls/IMGP1381.JPG" class="image">
+						<img src="images/thumbs/IMGP1381.JPG" alt="Villa-Marma ulkoa" />
+					</a>
+					<figcaption>VILLA-MARMA FOORUMI</figcaption>
+				</figure>
+				<figure>
+					<a href="images/fulls/1605271540_IMG_3670.jpg" class="image">
+						<img src="images/thumbs/1605271540_IMG_3670.jpg" alt="Villan makuuhuone" />
+					</a>
+					<figcaption>VILLAN MAKUUHUONE</figcaption>
+				</figure>
+			</div>
+
+			<div class="masa-cta">
+				<a href="#villa-marma" class="button big wide smooth-scroll-middle">Tutustu töihin alla</a>
 			</div>
 		</div>
 	</section>
 
-	<!-- Section: Tuotemallisto -->
-	<section>
-		<header>
-			<h2>Harald-mallisto</h2>
-		</header>
-		<div class="content">
-			<p><strong>Äijäluola-tyylisiä</strong> järeitä kalusteita, kelloja ja sisustustuotteita sisä- ja ulkokäyttöön.</p>
-
-			<!-- Aliosio 1: Huonekalut -->
-			<section>
-				<header>
-					<h3>Harald-kalusteet</h3>
-					<p>Pöydän koko 80 × 140 cm. Erittäin tyylikkäät ja raskaat kokonaisuudet terassille tai takkahuoneeseen.</p>
-				</header>
-				<div class="content">
-					<div class="gallery">
-						<!-- Rivi 1 (50% + 25% + 25% = 100%) -->
-						<a href="images/fulls/DSCN2112.jpg" class="landscape"><img src="images/thumbs/DSCN2112.jpg" alt="4-hengen Harald-kalusto" /></a>
-						<a href="images/fulls/IMG_20260819_153234_796.png"><img src="images/thumbs/IMG_20260819_153234_796.png" alt="Harald-kalusto" /></a>
-						<a href="images/fulls/DSCN1644.jpg"><img src="images/thumbs/DSCN1644.jpg" alt="Kevyt Harald-kaluste" /></a>
+	<!-- 2. VILLA-MARMA GALLERIA -->
+	<section class="wrapper style1 align-center" id="villa-marma">
+		<div class="inner">
+			<h2>Villa-Marma: Yksityiskohdat</h2>
+			<p>Käsinveistettyä keloa, mittatilauskalusteita ja uniikkeja tilaratkaisuja.</p>
+			<div class="gallery style1 medium lightbox onscroll-fade-in">
+				<article>
+					<a href="images/fulls/IMGP1252.jpg" class="image"><img src="images/thumbs/IMGP1252.jpg" alt="Ruokailuryhmä" /></a>
+					<div class="caption">
+						<h3>Ruokailukalusto</h3>
+						<p>8 hengen massiivinen kelopöytäryhmä.</p>
 					</div>
-					<p>Kaikki kalusteet saatavilla tilauksesta myös 6 hengelle mitoitettuna.</p>
-				</div>
-			</section>
-
-			<!-- Aliosio 2: Kellot -->
-			<section>
-				<header>
-					<h3>Harald-kellot</h3>
-					<p>Uniikit puukellot normaaleilla koneistoilla tai päinvastaisella numeroinnilla, joka "vähentää aikaa ja saa katsojan nuortumaan". Loistava lahjaidea ikääntyneille tai huumorintajuisille.</p>
-					<p>Kellot voidaan kustomoida lahjansaajaa kuvaavalla symbolilla (esim. hevonen, ruori, kalastaja, kaivinkone, traktori jne.) ja kaiverretulla kilvellä.</p>
-				</header>
-				<div class="content">
-					<div class="gallery">
-						<!-- Rivi 1 (25% + 25% + 25% + 25% = 100%) -->
-						<a href="images/fulls/DSCN2184.JPG"><img src="images/thumbs/DSCN2184.JPG" alt="Harald Standardikello" /></a>
-						<a href="images/fulls/DSCN2186.JPG"><img src="images/thumbs/DSCN2186.JPG" alt="Harald-kello sääasemalla" /></a>
-						<a href="images/fulls/DSCN2189.JPG"><img src="images/thumbs/DSCN2189.JPG" alt="Jumbo Harald-kello" /></a>
-						<a href="images/fulls/DSCN2257.JPG"><img src="images/thumbs/DSCN2257.JPG" alt="Harald-kello päinvastainen" /></a>
+				</article>
+				<article>
+					<a href="images/fulls/IMGP1267.jpg" class="image"><img src="images/thumbs/IMGP1267.jpg" alt="Sohvaryhmä" /></a>
+					<div class="caption">
+						<h3>Sohvaryhmä</h3>
+						<p>Massiivipuinen oleskeluryhmä.</p>
 					</div>
-				</div>
-			</section>
-
-			<!-- Aliosio 3: Valaisimet ja vermeet -->
-			<section>
-				<header>
-					<h3>Valaisimet & Vermeet</h3>
-					<p>Rustiikkiset valonlähteet ja säilytysratkaisut kotiin ja mökille.</p>
-				</header>
-				<div class="content">
-					<div class="gallery">
-						<!-- Rivi 1 (25% + 25% + 50% = 100%) -->
-						<a href="images/fulls/DSCN2181.JPG" class="portrait"><img src="images/thumbs/DSCN2181.JPG" alt="Harald-seinävalaisimet 230V" /></a>
-						<a href="images/fulls/DSCN2165.JPG" class="portrait"><img src="images/thumbs/DSCN2165.JPG" alt="Harald-myrskylyhdyt" /></a>
-						<a href="images/fulls/DSCN2204.JPG" class="landscape"><img src="images/thumbs/DSCN2204.JPG" alt="Harald-hyllykkö" /></a>
-						<!-- Rivi 2 (50% + 50% = 100%) -->
-						<a href="images/fulls/DSCN2177.JPG" class="landscape"><img src="images/thumbs/DSCN2177.JPG" alt="5-koukkuinen naulakko" /></a>
-						<a href="images/fulls/DSCN2211.JPG" class="landscape"><img src="images/thumbs/DSCN2211.JPG" alt="Keittiöverme" /></a>
+				</article>
+				<article>
+					<a href="images/fulls/IMGP1308.JPG" class="image"><img src="images/thumbs/IMGP1308.JPG" alt="Terassi" /></a>
+					<div class="caption">
+						<h3>Terassikalusteet</h3>
+						<p>Porontaljaverhoillut ulkokalusteet.</p>
 					</div>
-				</div>
-			</section>
-
-		</div>
-	</section>
-
-	<!-- Section: Konesuunnittelu -->
-	<section>
-		<header>
-			<h2>Konesuunnittelu & Erikoisrakenteet</h2>
-		</header>
-		<div class="content">
-			<p><strong>Puutöiden ohella</strong> suunnittelen ja valmistutan erikoiskoneita teollisuuteen ja harrastekäyttöön. Minulle ei ole outoa hyödyntää sähköä, paineilmaa, hydrauliikkaa tai ohjelmointia. Laajan verkostoni ansiosta osien hankinta ja valmistus onnistuvat sujuvasti.</p>
-
-			<div class="gallery">
-				<a href="images/fulls/IMG_20201005_133036.jpg" style="width: 100%;"><img src="images/thumbs/IMG_20201005_133036.jpg" alt="1000 tonnin vinssi" /></a>
+				</article>
+				<article>
+					<a href="images/fulls/1605271545_IMG_3677.jpg" class="image"><img src="images/thumbs/1605271545_IMG_3677.jpg" alt="Työhuone" /></a>
+					<div class="caption">
+						<h3>Työhuone</h3>
+						<p>Kelopuiset toimistoratkaisut.</p>
+					</div>
+				</article>
+				<article>
+					<a href="images/fulls/IMG_20260901_0003.jpg" class="image"><img src="images/thumbs/IMG_20260901_0003.jpg" alt="Sauna" /></a>
+					<div class="caption">
+						<h3>Löylyhuone</h3>
+						<p>Perinteinen savusaunatunnelma.</p>
+					</div>
+				</article>
+				<article>
+					<a href="images/fulls/DSCN1762.JPG" class="image"><img src="images/thumbs/DSCN1762.JPG" alt="Lauteet" /></a>
+					<div class="caption">
+						<h3>Saunalauteet</h3>
+						<p>Järeät lankkulauteet.</p>
+					</div>
+				</article>
 			</div>
-
-			<ul class="feature-icons">
-				<li class="icon solid fa-cogs">Erikoiskoneet & Vinssit (jopa 1 000 tn)</li>
-				<li class="icon solid fa-ship">Saunalautat</li>
-				<li class="icon solid fa-trailer">Peräkärryt saunalla & kylpypaljulla</li>
-				<li class="icon solid fa-fire">Hiiligrilli-rakenteet</li>
-				<li class="icon solid fa-dog">Kestävät koiratarhat</li>
-				<li class="icon solid fa-guitar">Soittajapatsaat & Lahjatavarat</li>
-			</ul>
 		</div>
 	</section>
 
-	<!-- Section: Yhteystiedot -->
-	<section>
-		<header>
+	<!-- 3. HARALD-KALUSTEET -->
+	<section class="spotlight style1 orient-right content-align-left image-position-center onscroll-image-fade-in" id="harald">
+		<div class="content">
+			<h2>Harald-kalusteet</h2>
+			<p>Pöydän koko 80 &times; 140 cm. Järeät ja rustiikkiset äijäluolakalusteet sisä- ja terassikäyttöön. Tilauksesta saatavilla myös 6 hengelle mitoitettuna.</p>
+		</div>
+		<div class="image">
+			<img src="images/fulls/DSCN2112.jpg" alt="Harald kalusteet" />
+		</div>
+	</section>
+
+	<!-- 4. VALAISIMET & VERMEET -->
+	<section class="spotlight style1 orient-left content-align-left image-position-center onscroll-image-fade-in" id="valaisimet">
+		<div class="content">
+			<h2>Valaisimet &amp; Sisustusvermeet</h2>
+			<p>Rustiikkiset hirsivalaisimet 230V sähköistyksellä, myrskylyhdyt, järeät naulakot hevoskengillä ja keittiövälinetelineet suoraan Eurajoen verstaalta.</p>
+		</div>
+		<div class="image">
+			<img src="images/fulls/DSCN2181.JPG" alt="Harald seinävalaisin" />
+		</div>
+	</section>
+
+	<!-- 5. HARALD-KELLOT -->
+	<section class="wrapper style1 align-center" id="kellot">
+		<div class="inner">
+			<h2>Harald-kellot</h2>
+			<p>Uniikit puukellot joko perinteisellä koneistolla tai päinvastaisella numeroinnilla, joka "vähentää aikaa ja saa katsojan nuortumaan". Saatavilla toiveiden mukaisilla symboleilla ja messinkikilvellä.</p>
+
+			<div class="gallery style1 small lightbox onscroll-fade-in">
+				<article>
+					<a href="images/fulls/DSCN2184.JPG" class="image"><img src="images/thumbs/DSCN2184.JPG" alt="Standardikello" /></a>
+					<div class="caption"><h3>Harald Standardi</h3></div>
+				</article>
+				<article>
+					<a href="images/fulls/DSCN2186.JPG" class="image"><img src="images/thumbs/DSCN2186.JPG" alt="Sääasemakello" /></a>
+					<div class="caption"><h3>Sääasema-kello</h3></div>
+				</article>
+				<article>
+					<a href="images/fulls/DSCN2189.JPG" class="image"><img src="images/thumbs/DSCN2189.JPG" alt="Jumbokello" /></a>
+					<div class="caption"><h3>Jumbo Harald</h3></div>
+				</article>
+				<article>
+					<a href="images/fulls/DSCN2257.JPG" class="image"><img src="images/thumbs/DSCN2257.JPG" alt="Päinvastainen kello" /></a>
+					<div class="caption"><h3>Nuorentava kello</h3></div>
+				</article>
+			</div>
+		</div>
+	</section>
+
+	<!-- 6. KONESUUNNITTELU -->
+	<section class="wrapper style1 align-center" id="konesuunnittelu">
+		<div class="inner">
+			<h2>Konesuunnittelu &amp; Erikoisrakenteet</h2>
+			<p>Puutöiden ohella suunnittelen ja valmistutan erikoiskoneita teollisuuteen ja vapaa-aikaan hyödyntäen hydrauliikkaa, pneumatiikkaa ja sähköä.</p>
+			<div class="items style1 medium onscroll-fade-in">
+				<section>
+					<span class="icon solid style2 major fa-cogs"></span>
+					<h3>Erikoiskoneet &amp; Vinssit</h3>
+					<p>Jopa 1 000 tonnin vetolaitteet ja teollisuusmekaniikka.</p>
+				</section>
+				<section>
+					<span class="icon solid style2 major fa-ship"></span>
+					<h3>Saunalautat</h3>
+					<p>Kestävät ja turvalliset ponttooniratkaisut vesille.</p>
+				</section>
+				<section>
+					<span class="icon solid style2 major fa-trailer"></span>
+					<h3>Kylpykärryt</h3>
+					<p>Mobiilisaunat ja paljut peräkärryalustalle toteutettuna.</p>
+				</section>
+				<section>
+					<span class="icon solid style2 major fa-fire"></span>
+					<h3>Hiiligrillit</h3>
+					<p>Järeät ulkoruuanvalmistusyksiköt kovaan käyttöön.</p>
+				</section>
+				<section>
+					<span class="icon solid style2 major fa-dog"></span>
+					<h3>Koiratarhat</h3>
+					<p>Kestävät ja turvalliset ulkoilurakenteet koirille.</p>
+				</section>
+				<section>
+					<span class="icon solid style2 major fa-guitar"></span>
+					<h3>Tilaustyöt</h3>
+					<p>Soittajapatsaat, uniikit lahjaesineet ja metallirakenteet.</p>
+				</section>
+			</div>
+		</div>
+	</section>
+
+	<!-- 7. YHTEYSTIEDOT & FOOTER -->
+	<footer class="wrapper style1 align-center">
+		<div class="inner medium">
 			<h2>Ota yhteyttä</h2>
-		</header>
-		<div class="content">
-			<p><strong>Kiinnostuitko kalusteista</strong>, uniikista Harald-lahjakellosta tai haluatko ideoida oman tilaustyön? Ota yhteyttä puhelimitse tai sähköpostilla.</p>
-		</div>
-		<footer>
-			<ul class="items">
-				<li>
-					<h3>Puhelin</h3>
-					<a href="tel:0458052009">045 805 2009</a>
-				</li>
-				<li>
-					<h3>Sähköposti</h3>
-					<a href="mailto:masa.salo47@gmail.com">masa.salo47@gmail.com</a>
-				</li>
-				<li>
-					<h3>Toimipiste & Verstas</h3>
-					<span>Matti Salo<br />Mäntytie 3<br />27100 Eurajoki</span>
-				</li>
-				<li>
-					<h3>Verkossa</h3>
-					<span>www.esimerkki.fi</span>
-				</li>
+			<p>Kiinnostuitko kalusteista, Harald-lahjakellosta tai tarvitsetko konsultaatiota kelohankkeeseen?</p>
+			<ul class="actions stacked">
+				<li><a href="tel:0458052009" class="button primary big wide">Soita: 045 805 2009</a></li>
+				<li><a href="mailto:masa.salo47@gmail.com" class="button wide">masa.salo47@gmail.com</a></li>
 			</ul>
-		</footer>
-	</section>
-
-	<!-- Copyright -->
-	<div class="copyright">&copy; 2026 Masan Puutyöt / Matti Salo. Kaikki oikeudet pidätetään.</div>
+			<p style="margin-top: 3rem; font-size: 0.85rem; color: #888;">
+				Matti Salo &bull; Mäntytie 3, 27100 Eurajoki<br />
+				&copy; 2026 Masan Puutyöt. Design pohjautuu HTML5 UP Storyyn.
+			</p>
+		</div>
+	</footer>
 
 </div>
 
 <!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
+<script src="assets/js/jquery.scrollex.min.js"></script>
 <script src="assets/js/jquery.scrolly.min.js"></script>
 <script src="assets/js/browser.min.js"></script>
 <script src="assets/js/breakpoints.min.js"></script>
