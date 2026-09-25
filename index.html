@@ -16,7 +16,7 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			background-color: #d0d0d0; /* Neutraali harmaa taustaväri */
+			background-color: #d0d0d0;
 			padding: 4rem 1.5rem;
 			z-index: 1;
 		}
@@ -25,7 +25,7 @@
 			background: #ffffff;
 			border: 2px solid #111111;
 			border-radius: 12px;
-			max-width: 1050px;
+			max-width: 1000px;
 			width: 100%;
 			padding: 4.5rem 4rem;
 			position: relative;
@@ -47,7 +47,7 @@
 		.masa-corners::before { bottom: 12px; left: 12px; border-right: none; border-top: none; border-bottom-left-radius: 8px; }
 		.masa-corners::after { bottom: 12px; right: 12px; border-left: none; border-top: none; border-bottom-right-radius: 8px; }
 
-		/* Typografia */
+		/* Typografia: Kaikki leipäteksti ja yhteystiedot täsmälleen samalla koolla ja fontilla */
 		.masa-poster, .masa-poster * {
 			font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
 			color: #111111;
@@ -58,17 +58,15 @@
 		.masa-header h1 {
 			font-size: 2.25rem !important;
 			font-weight: 900 !important;
-			margin: 0 0 0.5rem 0 !important;
-			letter-spacing: 0.06em;
+			margin: 0 0 1rem 0 !important;
+			letter-spacing: 0.05em;
 		}
 
 		.masa-contact-bar {
-			font-size: 0.85rem !important;
-			line-height: 1.6 !important;
-			border-bottom: 2px solid #111111;
-			padding-bottom: 1.5rem;
+			font-size: 0.95rem !important;
+			line-height: 1.75 !important;
 			margin-bottom: 2.5rem;
-			font-weight: 700;
+			font-weight: 400;
 		}
 
 		.masa-bio-grid {
@@ -76,7 +74,7 @@
 			grid-template-columns: 1fr 300px;
 			gap: 3rem;
 			align-items: start;
-			margin-bottom: 2rem;
+			margin-bottom: 1.5rem;
 		}
 
 		.masa-bio-text p, .masa-full-text p {
@@ -85,6 +83,7 @@
 			margin-bottom: 1.25rem !important;
 		}
 
+		/* Näyttää valmiiksi rajatun masa.jpg-kuvan kokonaan luonnollisessa kuvasuhteessa */
 		.masa-bio-image img {
 			width: 100%;
 			height: auto;
@@ -93,18 +92,26 @@
 			border-radius: 8px;
 		}
 
-		/* Masan 2 kuvaa rinnakkain (tukee myös main.js:n luomaa .inner-käärettä) */
-		.masa-proof-gallery,
+		/* Ulompi div on block, ja vain main.js:n luoma .inner on 2-sarakkeinen grid */
+		.masa-proof-gallery {
+			display: block !important;
+			width: 100% !important;
+			margin: 2.5rem 0 0 0 !important;
+		}
+
 		.masa-proof-gallery > .inner {
 			display: grid !important;
 			grid-template-columns: 1fr 1fr !important;
-			gap: 2rem !important;
+			gap: 2.5rem !important;
 			width: 100% !important;
 			overflow: visible !important;
 		}
 
-		.masa-proof-gallery {
-			margin: 3rem 0 0 0;
+		/* Jos sivu latautuu ilman JavaScriptiä */
+		noscript + .masa-proof-gallery {
+			display: grid !important;
+			grid-template-columns: 1fr 1fr !important;
+			gap: 2.5rem !important;
 		}
 
 		/* Piilotetaan teeman oletusnuolet galleriasta */
@@ -125,20 +132,20 @@
 			border: 2px solid #111111;
 			border-radius: 8px;
 			overflow: hidden;
-			margin-bottom: 0.75rem;
+			margin-bottom: 0.85rem;
 		}
 
-		.masa-proof-gallery img {
-			width: 100%;
-			height: 280px;
+		.masa-proof-gallery a.image img {
+			width: 100% !important;
+			height: 320px !important;
 			object-fit: cover !important;
 			object-position: center !important;
-			display: block;
+			display: block !important;
 		}
 
 		.masa-proof-gallery figcaption {
-			font-size: 0.85rem !important;
-			font-weight: 900 !important;
+			font-size: 0.95rem !important;
+			font-weight: 700 !important;
 			line-height: 1.4 !important;
 		}
 
@@ -155,8 +162,7 @@
 				font-size: 1.75rem !important;
 			}
 			.masa-contact-bar {
-				font-size: 0.75rem !important;
-				padding-bottom: 1rem;
+				font-size: 0.85rem !important;
 				margin-bottom: 1.5rem;
 			}
 			.masa-bio-grid {
@@ -168,16 +174,12 @@
 				width: 280px;
 				margin: 0 auto;
 			}
-			.masa-proof-gallery,
 			.masa-proof-gallery > .inner {
 				grid-template-columns: 1fr !important;
-				gap: 1.5rem !important;
+				gap: 2rem !important;
 			}
-			.masa-proof-gallery {
-				margin-top: 2rem;
-			}
-			.masa-proof-gallery img {
-				height: 220px;
+			.masa-proof-gallery a.image img {
+				height: 240px !important;
 			}
 			.masa-poster::before, .masa-poster::after, .masa-corners::before, .masa-corners::after {
 				display: none;
@@ -190,7 +192,7 @@
 <!-- Wrapper -->
 <div id="wrapper">
 
-	<!-- MASAN ETUSIVU (Vain tämä yksi sivu) -->
+	<!-- MASAN ETUSIVU -->
 	<section id="masa-hero">
 		<div class="masa-poster">
 			<div class="masa-corners"></div>
@@ -198,15 +200,17 @@
 			<div class="masa-header">
 				<h1>Masan Puutyöt</h1>
 				<div class="masa-contact-bar">
-					Matti Salo &bull; Mäntytie 3, 27100 Eurajoki<br />
-					Puh. 045 805 2009 &bull; masa.salo47@gmail.com
+					www.masanpuutyöt.fi<br />
+					Matti Salo, Mäntytie 3, 27100 Eurajoki<br />
+					Puh. 045 805 2009<br />
+					masa.salo47@gmail.com
 				</div>
 			</div>
 
 			<div class="masa-bio-grid">
 				<div class="masa-bio-text">
-					<p>Olen 79-vuotias äijä. Koulutukseltani ammattisotilas. Sekoitin käsitteet oma-aloitteellisuus ja omavaltaisuus, jonka takia siirryin siviiliin... sitten seurasi sitä ja tätä... enimmäkseen sitä.</p>
-					<p>Vuonna 2023 jäin eläkkeelle konesuunnittelijana. Nyt valmistan kaikkea mahdollista... mahdottomatkin mahdollisia, mutta vähän kalliimpia.</p>
+					<p>Olen 79-vuotias äijä. Koulutukseltani ammattisotilas. Sekoitin käsitteet oma-aloitteellisuus ja omavaltaisuus, jonka takia siirryin siviiliin....sitten seurasi sitä ja tätä.... enimmäkseen sitä.</p>
+					<p>Vuonna 2023 jäin eläkkeelle konesuunnittelijana. Nyt valmistan kaikkea mahdollista.... mahdottomatkin mahdollisia...mutta vähän kalliimpia.</p>
 					<p>Kouluaikana radikalismi aiheutti allergian opiskelua kohtaan, jonka oireina oli mm. koulussakäynnin ja varsinkin läksyjen lukujen laiminlyönti. Tämä johti lopulta katastrofiin. En omaa kouluajaltani minkäänlaista todistusta.</p>
 				</div>
 				<div class="masa-bio-image">
@@ -215,12 +219,20 @@
 			</div>
 
 			<div class="masa-full-text">
-				<p>Nuorena harrastin menestyksellisesti kilpauintia. Vuonna 1966 olin Hesan Messuhallissa voittamassa Rock-yhtyeitten SM:n. Haulikkoammunnassa olen kilpaillut koko ikäni, jossa lajissa yksi Suomen mestaruus ja pari Suomen ennätystä.</p>
-				<p>Enemmittä puheitta itse asiaan. Eniten arvostan suunnittelemaani ja toteuttamaani hirsilinnaa Villa-Marmaa. Lattia-ala 350 m², lisäksi terassi 140 m², harjakorkeus 11,5 m, 650 m³ ylisuurta keloa. Valmistin itse kaikki huonekalut, valaisimet, ikkunat, ovet ja tein puuhan eteen luokkaa 7 000 työtuntia. Melkoinen pirtti.</p>
-				<p>En ole kauppaamassa tällaista pirttiä... jos joku on kiinnostunut, voin konsultoida projektia tiedoillani. Oheisena muutama kuva Villa-Marma-projektista.</p>
+				<p>
+					Nuorena harrastin menestyksellisesti kilpauintia. Vuonna 1966 olin Hesan Messuhallissa voittamassa Rock-yhtyeitten SM:n.<br />
+					Haulikkoammunnassa olen kilpaillut koko ikäni, jossa lajissa yksi Suomen mestaruus ja pari Suomenennätystä.
+				</p>
+				<p>
+					Enemmittä puheitta itse asiaan. Eniten arvostan suunnittelemaani ja toteuttamaani hirsilinnaa Villa-Marmaa. Lattia-ala 350m2, lisäksi terassi 140m2, harjakorkeus 11,5m, 650m3 ylisuurta keloa.<br />
+					Valmistin itse kaikki huonekalut, valaisimet, ikkunat, ovet ja tein puuhan eteen itse luokkaa 7000 työtuntia.<br />
+					Melkoinen pirtti.
+				</p>
+				<p>En ole kauppaamassa tällaista pirttiä..jos joku on kiinnostunut, voin konsultoida projektia tiedoillani.</p>
+				<p>Oheisena muutama kuva Villa-Marma-projektista.</p>
 			</div>
 
-			<!-- Kaksi kuvaa rinnakkain selitteineen -->
+			<!-- Kaksi kuvaa rinnakkain koko palstan leveydellä -->
 			<div class="gallery masa-proof-gallery lightbox">
 				<figure>
 					<a href="images/fulls/IMGP1381.JPG" class="image">
