@@ -1,265 +1,190 @@
 <!DOCTYPE HTML>
 <html lang="fi">
 <head>
-	<title>Masan Puutyöt | Matti Salo, Eurajoki</title>
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<meta name="description" content="Masan Puutyöt - Uniikit käsityökalusteet, äijäluola-varusteet, Harald-kellot ja kelohirsirakentaminen." />
-	<link rel="stylesheet" href="assets/css/main.css" />
-	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-
-	<style>
-		/* --- MASAN TYÖHUONE -JULISTE (PELKKÄ ETUSIVU) --- */
-		#masa-hero {
-			position: relative;
-			min-height: 100vh;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			background-color: #d0d0d0;
-			padding: 4rem 1.5rem;
-			z-index: 1;
-		}
-
-		.masa-poster {
-			background: #ffffff;
-			border: 2px solid #111111;
-			border-radius: 12px;
-			max-width: 1000px;
-			width: 100%;
-			padding: 4.5rem 4rem;
-			position: relative;
-			box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-		}
-
-		/* Kulmakoristeet */
-		.masa-poster::before, .masa-poster::after,
-		.masa-corners::before, .masa-corners::after {
-			content: '';
-			position: absolute;
-			width: 32px;
-			height: 32px;
-			border: 3px solid #111111;
-			pointer-events: none;
-		}
-		.masa-poster::before { top: 12px; left: 12px; border-right: none; border-bottom: none; border-top-left-radius: 8px; }
-		.masa-poster::after { top: 12px; right: 12px; border-left: none; border-bottom: none; border-top-right-radius: 8px; }
-		.masa-corners::before { bottom: 12px; left: 12px; border-right: none; border-top: none; border-bottom-left-radius: 8px; }
-		.masa-corners::after { bottom: 12px; right: 12px; border-left: none; border-top: none; border-bottom-right-radius: 8px; }
-
-		/* Typografia: Kaikki leipäteksti ja yhteystiedot täsmälleen samalla koolla ja fontilla */
-		.masa-poster, .masa-poster * {
-			font-family: Arial, "Helvetica Neue", Helvetica, sans-serif !important;
-			color: #111111;
-			text-transform: uppercase;
-			letter-spacing: 0.03em;
-		}
-
-		.masa-header h1 {
-			font-size: 2.25rem !important;
-			font-weight: 900 !important;
-			margin: 0 0 1rem 0 !important;
-			letter-spacing: 0.05em;
-		}
-
-		.masa-contact-bar {
-			font-size: 0.95rem !important;
-			line-height: 1.75 !important;
-			margin-bottom: 2.5rem;
-			font-weight: 400;
-		}
-
-		.masa-bio-grid {
-			display: grid;
-			grid-template-columns: 1fr 300px;
-			gap: 3rem;
-			align-items: start;
-			margin-bottom: 1.5rem;
-		}
-
-		.masa-bio-text p, .masa-full-text p {
-			font-size: 0.95rem !important;
-			line-height: 1.75 !important;
-			margin-bottom: 1.25rem !important;
-		}
-
-		/* Näyttää valmiiksi rajatun masa.jpg-kuvan kokonaan luonnollisessa kuvasuhteessa */
-		.masa-bio-image img {
-			width: 100%;
-			height: auto;
-			display: block;
-			border: 2px solid #111111;
-			border-radius: 8px;
-		}
-
-		/* Ulompi div on block, ja vain main.js:n luoma .inner on 2-sarakkeinen grid */
-		.masa-proof-gallery {
-			display: block !important;
-			width: 100% !important;
-			margin: 2.5rem 0 0 0 !important;
-		}
-
-		.masa-proof-gallery > .inner {
-			display: grid !important;
-			grid-template-columns: 1fr 1fr !important;
-			gap: 2.5rem !important;
-			width: 100% !important;
-			overflow: visible !important;
-		}
-
-		/* Jos sivu latautuu ilman JavaScriptiä */
-		noscript + .masa-proof-gallery {
-			display: grid !important;
-			grid-template-columns: 1fr 1fr !important;
-			gap: 2.5rem !important;
-		}
-
-		/* Piilotetaan teeman oletusnuolet galleriasta */
-		.masa-proof-gallery > .forward,
-		.masa-proof-gallery > .backward {
-			display: none !important;
-		}
-
-		.masa-proof-gallery figure {
-			margin: 0;
-			text-align: center;
-			width: 100%;
-		}
-
-		.masa-proof-gallery a.image {
-			display: block;
-			width: 100%;
-			border: 2px solid #111111;
-			border-radius: 8px;
-			overflow: hidden;
-			margin-bottom: 0.85rem;
-		}
-
-		.masa-proof-gallery a.image img {
-			width: 100% !important;
-			height: 320px !important;
-			object-fit: cover !important;
-			object-position: center !important;
-			display: block !important;
-		}
-
-		.masa-proof-gallery figcaption {
-			font-size: 0.95rem !important;
-			font-weight: 700 !important;
-			line-height: 1.4 !important;
-		}
-
-		/* Mobiiliskaalaus */
-		@media screen and (max-width: 840px) {
-			#masa-hero {
-				padding: 1.5rem 0.75rem;
-			}
-			.masa-poster {
-				padding: 2rem 1.5rem;
-				border-radius: 8px;
-			}
-			.masa-header h1 {
-				font-size: 1.75rem !important;
-			}
-			.masa-contact-bar {
-				font-size: 0.85rem !important;
-				margin-bottom: 1.5rem;
-			}
-			.masa-bio-grid {
-				grid-template-columns: 1fr;
-				gap: 1.5rem;
-			}
-			.masa-bio-image {
-				max-width: 100%;
-				width: 280px;
-				margin: 0 auto;
-			}
-			.masa-proof-gallery > .inner {
-				grid-template-columns: 1fr !important;
-				gap: 2rem !important;
-			}
-			.masa-proof-gallery a.image img {
-				height: 240px !important;
-			}
-			.masa-poster::before, .masa-poster::after, .masa-corners::before, .masa-corners::after {
-				display: none;
-			}
-		}
-	</style>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Masan Puutyöt</title>
+	<link rel="stylesheet" href="assets/css/masa-custom.css">
 </head>
-<body class="is-preload">
 
-<!-- Wrapper -->
-<div id="wrapper">
+<body>
 
-	<!-- MASAN ETUSIVU -->
-	<section id="masa-hero">
-		<div class="masa-poster">
-			<div class="masa-corners"></div>
+<main id="masa-hero">
 
-			<div class="masa-header">
-				<h1>Masan Puutyöt</h1>
-				<div class="masa-contact-bar">
-					www.masanpuutyöt.fi<br />
-					Matti Salo, Mäntytie 3, 27100 Eurajoki<br />
-					Puh. 045 805 2009<br />
-					masa.salo47@gmail.com
-				</div>
-			</div>
+	<section class="masa-a4">
 
-			<div class="masa-bio-grid">
-				<div class="masa-bio-text">
-					<p>Olen 79-vuotias äijä. Koulutukseltani ammattisotilas. Sekoitin käsitteet oma-aloitteellisuus ja omavaltaisuus, jonka takia siirryin siviiliin....sitten seurasi sitä ja tätä.... enimmäkseen sitä.</p>
-					<p>Vuonna 2023 jäin eläkkeelle konesuunnittelijana. Nyt valmistan kaikkea mahdollista.... mahdottomatkin mahdollisia...mutta vähän kalliimpia.</p>
-					<p>Kouluaikana radikalismi aiheutti allergian opiskelua kohtaan, jonka oireina oli mm. koulussakäynnin ja varsinkin läksyjen lukujen laiminlyönti. Tämä johti lopulta katastrofiin. En omaa kouluajaltani minkäänlaista todistusta.</p>
-				</div>
-				<div class="masa-bio-image">
-					<img src="images/masa.jpg" alt="Matti Salo" />
-				</div>
-			</div>
+		<!-- =====================================================
+               A4-ARKIN KEHYS
+               ===================================================== -->
 
-			<div class="masa-full-text">
-				<p>
-					Nuorena harrastin menestyksellisesti kilpauintia. Vuonna 1966 olin Hesan Messuhallissa voittamassa Rock-yhtyeitten SM:n.<br />
-					Haulikkoammunnassa olen kilpaillut koko ikäni, jossa lajissa yksi Suomen mestaruus ja pari Suomenennätystä.
-				</p>
-				<p>
-					Enemmittä puheitta itse asiaan. Eniten arvostan suunnittelemaani ja toteuttamaani hirsilinnaa Villa-Marmaa. Lattia-ala 350m2, lisäksi terassi 140m2, harjakorkeus 11,5m, 650m3 ylisuurta keloa.<br />
-					Valmistin itse kaikki huonekalut, valaisimet, ikkunat, ovet ja tein puuhan eteen itse luokkaa 7000 työtuntia.<br />
-					Melkoinen pirtti.
-				</p>
-				<p>En ole kauppaamassa tällaista pirttiä..jos joku on kiinnostunut, voin konsultoida projektia tiedoillani.</p>
-				<p>Oheisena muutama kuva Villa-Marma-projektista.</p>
-			</div>
-
-			<!-- Kaksi kuvaa rinnakkain koko palstan leveydellä -->
-			<div class="gallery masa-proof-gallery lightbox">
-				<figure>
-					<a href="images/fulls/IMGP1381.JPG" class="image">
-						<img src="images/thumbs/IMGP1381.JPG" alt="Villa-Marma ulkoa" />
-					</a>
-					<figcaption>VILLA-MARMA FOORUMI</figcaption>
-				</figure>
-				<figure>
-					<a href="images/fulls/1605271540_IMG_3670.jpg" class="image">
-						<img src="images/thumbs/1605271540_IMG_3670.jpg" alt="Villan makuuhuone" />
-					</a>
-					<figcaption>VILLAN MAKUUHUONE</figcaption>
-				</figure>
-			</div>
+		<div class="masa-frame" aria-hidden="true">
+			<span class="corner corner-tl"></span>
+			<span class="corner corner-tr"></span>
+			<span class="corner corner-bl"></span>
+			<span class="corner corner-br"></span>
 		</div>
+
+
+		<!-- =====================================================
+               OTSIKKO + YHTEYSTIEDOT
+               ===================================================== -->
+
+		<header class="masa-header">
+
+			<h1>MASAN PUUTYÖT</h1>
+
+			<div class="masa-contact">
+				<div>
+					<a href="https://www.masanpuutyöt.fi/">
+						www.masanpuutyöt.fi
+					</a>
+				</div>
+
+				<div>
+					MATTI SALO, MÄNTYTIE 3, 27100 EURAJOKI
+				</div>
+
+				<div>
+					PUH. 045 805 2009
+				</div>
+
+				<div>
+					<a href="mailto:masa.salo47@gmail.com">
+						masa.salo47@gmail.com
+					</a>
+				</div>
+			</div>
+
+		</header>
+
+
+		<!-- =====================================================
+               A4-SISÄLTÖ
+               ===================================================== -->
+
+		<div class="masa-content">
+
+			<!-- =================================================
+                     YLÄOSA
+                     TEKSTI + MATIN KUVA
+                     ================================================= -->
+
+			<section class="masa-top">
+
+				<div class="masa-text">
+					<p>
+						OLEN 79-VUOTIAS ÄIJÄ.<br>
+						KOULUTUKSELTANI AMMATTISOTILAS.<br>
+						SEKOITIN KÄSITTEET OMA-ALOITTEELLISUUS<br>
+						JA OMAVALTAISUUS, JONKA TAKIA SIIRRYIN<br>
+						SIVIILIIN....SITTEN SEURASI SITÄ JA TÄTÄ....<br>
+						ENIMMÄKSEEN SITÄ.
+					</p>
+
+					<p>
+						VUONNA 2023 JÄIN ELÄKKEELLE<br>
+						KONESUUNNITTELIJANA. NYT VALMISTAN KAIKKEA<br>
+						MAHDOLLISTA....MAHDOTTOMATKIN<br>
+						MAHDOLLISIA...MUTTA VÄHÄN KALLIIMPIA.
+					</p>
+
+					<p>
+						KOULUAIKANA RADIKALISMI AIHEUTTI<br>
+						ALLERGIAN OPISKELUA KOHTAAN, JONKA<br>
+						OIREINA OLI MM. KOULUSSAKÄYNNIN JA<br>
+						VARSINKIN LÄKSYJEN LUKUJEN LAIMINLYÖNTI.<br>
+						TÄMÄ JOHTI LOPULTA KATASTROFIIN. EN OMAA<br>
+						KOULUAJALTANI MINKÄÄNLAISTA TODISTUSTA.
+					</p>
+				</div>
+
+				<!-- Oikean yläkulman kuva -->
+				<figure class="masa-side-image">
+					<img
+							src="images/masa.jpg"
+							alt="Matti Salo"
+					>
+				</figure>
+
+			</section>
+
+
+			<!-- =================================================
+                     ALEMPI TEKSTIOSA
+                     ================================================= -->
+
+			<section class="masa-lower-text">
+				<p>
+					NUORENA HARRASTIN MENESTYKSELLISESTI
+					KILPAUINTIA. VUONNA 1966 OLIN HESAN
+					MESSUHALLISSA VOITTAMASSA ROCK-YHTYEITTEN SM:N.
+				</p>
+
+				<p>
+					HAULIKKOAMMUNNASSA OLEN KILPAILLUT KOKO IKÄNI,
+					JOSSA LAJISSA YKSI SUOMEN MESTARUUS JA PARI
+					SUOMENENNÄTYSTÄ.
+				</p>
+
+				<p>
+					ENEMMITTÄ PUHEITTA ITSE ASIAAN. ENITEN ARVOSTAN
+					SUUNNITTELEMAANI JA TOTEUTTAMAANI HIRSILINNAA
+					VILLA-MARMAA. LATTIA-ALA 350M2, LISÄKSI TERASSI
+					140M2, HARJAKORKEUS 11,5M, 650M3 YLISUURTA KELOA.
+					VALMISTIN ITSE KAIKKI HUONEKALUT, VALAISIMET,
+					IKKUNAT, OVET JA TEIN PUUHAN ETEEN ITSE LUOKKAA
+					7000 TYÖTUNTIA.
+				</p>
+
+				<p>
+					MELKOINEN PIRTTI.
+				</p>
+
+				<p>
+					EN OLE KAUPPAAMASSA TÄLLAISTA PIRTTIÄ ..JOS JOKU
+					ON KIINNOSTUNUT, VOIN KONSULTOIDA PROJEKTIA
+					TIEDOILLANI.
+				</p>
+
+				<p>
+					OHEISENA MUUTAMA KUVA VILLA-MARMA-PROJEKTISTA.
+				</p>
+			</section>
+
+
+			<!-- =================================================
+                     ALAOSAN KUVAT
+                     ================================================= -->
+
+			<section class="masa-gallery">
+
+				<figure>
+					<img
+							src="images/thumbs/1605271540_IMG_3670.jpg"
+							alt="Villa-Marma"
+					>
+					<figcaption>
+						VILLA-MARMA FOORUMI
+					</figcaption>
+				</figure>
+
+				<figure>
+					<img
+							src="images/thumbs/IMGP1381.JPG"
+							alt="Villan makuuhuone"
+					>
+					<figcaption>
+						VILLAN MAKUUHUONE
+					</figcaption>
+				</figure>
+
+			</section>
+
+		</div>
+
 	</section>
 
-</div>
-
-<!-- Scripts -->
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/jquery.scrolly.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+</main>
 
 </body>
 </html>

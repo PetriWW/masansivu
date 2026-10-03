@@ -1,0 +1,747 @@
+﻿/* ============================================================
+   MASAN PUUTYÖT
+   A4-ETUSIVU
+
+   Tavoite:
+   - yksi A4-pystyarkki
+   - tarkka A4-kuvasuhde
+   - sisältö skaalautuu kokonaisuutena
+   - tulostuu yhdelle A4-sivulle
+   - mobiilissa koko A4 säilyy
+   ============================================================ */
+
+
+/* ============================================================
+   PERUSASETUKSET
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    min-height: 100%;
+
+    background: #d0d0d0;
+
+    font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+    color: #111;
+}
+
+
+body {
+    overflow-x: hidden;
+}
+
+
+/* ============================================================
+   A4-ALUE
+   ============================================================ */
+
+#masa-hero {
+
+    width: 100%;
+    min-height: 100vh;
+
+    margin: 0;
+    padding: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    background: #d0d0d0;
+}
+
+
+/*
+   TÄRKEÄ:
+
+   A4 = 210 × 297
+
+   aspect-ratio pitää sivun aina oikeassa suhteessa.
+*/
+
+.masa-a4 {
+
+    position: relative;
+
+    width: min(
+            210mm,
+            calc(100vw - 40px)
+    );
+
+    aspect-ratio: 210 / 297;
+
+    flex: 0 0 auto;
+
+    background: #fff;
+
+    overflow: hidden;
+
+    padding:
+            14mm
+            13mm
+            11mm
+            13mm;
+
+    color: #111;
+
+    box-shadow:
+            0 8px 25px rgba(0, 0, 0, 0.25);
+}
+
+
+/* ============================================================
+   KEHYS
+   ============================================================ */
+
+.masa-frame {
+
+    position: absolute;
+
+    left: 4mm;
+    right: 4mm;
+    top: 4mm;
+    bottom: 4mm;
+
+    border: 4px solid #111;
+
+    pointer-events: none;
+
+    z-index: 10;
+}
+
+
+/* ============================================================
+   NURKKAKORISTEET
+   ============================================================ */
+
+.corner {
+
+    position: absolute;
+
+    width: 14mm;
+    height: 14mm;
+
+    border-color: #111;
+    border-style: solid;
+
+    pointer-events: none;
+}
+
+
+/* YLÄVASEN */
+
+.corner-tl {
+
+    top: -3px;
+    left: -3px;
+
+    border-width: 6px 0 0 6px;
+}
+
+
+/* YLÄOIKEA */
+
+.corner-tr {
+
+    top: -3px;
+    right: -3px;
+
+    border-width: 6px 6px 0 0;
+}
+
+
+/* ALA-VASEN */
+
+.corner-bl {
+
+    bottom: -3px;
+    left: -3px;
+
+    border-width: 0 0 6px 6px;
+}
+
+
+/* ALA-OIKEA */
+
+.corner-br {
+
+    bottom: -3px;
+    right: -3px;
+
+    border-width: 0 6px 6px 0;
+}
+
+
+/* ============================================================
+   OTSIKKO
+   ============================================================ */
+
+.masa-header {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+.masa-header h1 {
+
+    margin: 0 0 6mm 0;
+
+    padding: 0;
+
+    text-align: center;
+
+    font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+    font-size: 7mm;
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    letter-spacing: 0;
+
+    color: #111;
+}
+
+
+/* ============================================================
+   YHTEYSTIEDOT
+   ============================================================ */
+
+.masa-contact {
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+    font-size: 3.35mm;
+
+    line-height: 1.27;
+
+    font-weight: 700;
+
+    letter-spacing: 0;
+
+    color: #111;
+
+    text-transform: uppercase;
+}
+
+
+/*
+   Sivuston osoite ja sähköposti
+   asiakkaan pyynnön mukaisesti pienillä kirjaimilla.
+*/
+
+.masa-contact a {
+
+    color: #111;
+
+    text-decoration: none;
+
+    text-transform: none;
+
+    letter-spacing: 0;
+
+    font-weight: 700;
+}
+
+
+/* ============================================================
+   SISÄLTÖ
+   ============================================================ */
+
+.masa-content {
+
+    position: relative;
+
+    z-index: 2;
+
+    margin-top: 5mm;
+}
+
+
+/* ============================================================
+   YLÄOSA
+   ============================================================ */
+
+.masa-top {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        31%;
+
+    column-gap: 6mm;
+
+    align-items: start;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   LEIPÄTEKSTI
+   ============================================================ */
+
+.masa-text,
+.masa-lower-text {
+
+    font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+    font-size: 3.42mm;
+
+    line-height: 1.16;
+
+    font-weight: 700;
+
+    letter-spacing: 0;
+
+    color: #111;
+
+    text-transform: uppercase;
+}
+
+
+.masa-text p,
+.masa-lower-text p {
+
+    margin: 0 0 4.1mm 0;
+
+    padding: 0;
+}
+
+
+/*
+   Ensimmäinen rivi on asiakkaan mallin mukainen:
+
+   OLEN 79-VUOTIAS ÄIJÄ.
+
+   KOULUTUKSELTANI tulee vasta seuraavalle riville.
+*/
+
+.masa-text p:first-child {
+
+    margin-top: 0;
+}
+
+
+/* ============================================================
+   OIKEAN YLÄKULMAN KUVA
+   ============================================================ */
+
+.masa-side-image {
+
+    width: 100%;
+
+    margin: 1mm 0 0 0;
+    padding: 0;
+
+    border: 2px solid #111;
+
+    overflow: hidden;
+
+    background: #fff;
+}
+
+
+.masa-side-image img {
+
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    margin: 0;
+    padding: 0;
+
+    border: 0;
+}
+
+
+/* ============================================================
+   ALEMPI TEKSTI
+   ============================================================ */
+
+.masa-lower-text {
+
+    margin-top: 1mm;
+
+    width: 100%;
+}
+
+
+/* ============================================================
+   GALLERIA
+   ============================================================ */
+
+.masa-gallery {
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        minmax(0, 1fr);
+
+    gap: 5mm;
+
+    width: 100%;
+
+    margin: 3mm 0 0 0;
+
+    padding: 0;
+}
+
+
+.masa-gallery figure {
+
+    width: 100%;
+
+    margin: 0;
+    padding: 0;
+}
+
+
+/* ============================================================
+   GALLERIAKUVA
+   ============================================================ */
+
+.masa-gallery img {
+
+    display: block;
+
+    width: 100%;
+    height: auto;
+
+    margin: 0;
+    padding: 0;
+
+    border: 2px solid #111;
+
+    background: #fff;
+}
+
+
+/* ============================================================
+   KUVATEKSTIT
+   ============================================================ */
+
+.masa-gallery figcaption {
+
+    margin: 1.5mm 0 0 0;
+    padding: 0;
+
+    text-align: center;
+
+    font-family:
+            Arial,
+            Helvetica,
+            sans-serif;
+
+    font-size: 2.7mm;
+
+    line-height: 1;
+
+    font-weight: 900;
+
+    letter-spacing: 0;
+
+    color: #111;
+
+    text-transform: uppercase;
+}
+
+
+/* ============================================================
+   MOBIILI
+   ============================================================ */
+
+@media screen and (max-width: 700px) {
+
+    #masa-hero {
+
+        width: 100%;
+
+        min-height: 100vh;
+
+        padding: 0;
+
+        display: flex;
+
+        justify-content: center;
+        align-items: flex-start;
+
+        background: #fff;
+    }
+
+
+    .masa-a4 {
+
+        /*
+           A4 käyttää koko käytettävissä olevan leveyden.
+        */
+
+        width: 100vw;
+
+        /*
+           210 / 297 = A4-kuvasuhde
+        */
+
+        height: calc(100vw * 297 / 210);
+
+        aspect-ratio: 210 / 297;
+
+        padding:
+                14mm
+                13mm
+                11mm
+                13mm;
+
+        box-shadow: none;
+    }
+
+
+    .masa-frame {
+
+        left: 3mm;
+        right: 3mm;
+        top: 3mm;
+        bottom: 3mm;
+
+        border-width: 3px;
+    }
+
+
+    .corner {
+
+        width: 11mm;
+        height: 11mm;
+    }
+
+
+    .corner-tl,
+    .corner-tr,
+    .corner-bl,
+    .corner-br {
+
+        border-width: 4px;
+    }
+}
+
+
+/* ============================================================
+   PIENI PUHELIN
+   ============================================================ */
+
+@media screen and (max-width: 430px) {
+
+    .masa-a4 {
+
+        padding:
+                13mm
+                11mm
+                10mm
+                11mm;
+    }
+
+
+    .masa-header h1 {
+
+        font-size: 6.5mm;
+
+        margin-bottom: 5mm;
+    }
+
+
+    .masa-contact {
+
+        font-size: 3.05mm;
+
+        line-height: 1.22;
+    }
+
+
+    .masa-content {
+
+        margin-top: 4mm;
+    }
+
+
+    .masa-top {
+
+        column-gap: 4mm;
+    }
+
+
+    .masa-text,
+    .masa-lower-text {
+
+        font-size: 3.15mm;
+
+        line-height: 1.14;
+    }
+
+
+    .masa-text p,
+    .masa-lower-text p {
+
+        margin-bottom: 3.4mm;
+    }
+
+
+    .masa-gallery {
+
+        gap: 3mm;
+    }
+
+
+    .masa-gallery figcaption {
+
+        font-size: 2.45mm;
+    }
+}
+
+
+/* ============================================================
+   TULOSTUS
+   ============================================================ */
+
+@media print {
+
+    /*
+       Tulostimen oletusmarginaalit pois.
+    */
+
+    @page {
+
+        size: A4 portrait;
+
+        margin: 0;
+    }
+
+
+    html,
+    body {
+
+        width: 210mm;
+        height: 297mm;
+
+        margin: 0;
+        padding: 0;
+
+        background: #fff;
+    }
+
+
+    body {
+
+        overflow: hidden;
+    }
+
+
+    #masa-hero {
+
+        width: 210mm;
+        height: 297mm;
+
+        min-height: 0;
+
+        margin: 0;
+        padding: 0;
+
+        display: block;
+
+        background: #fff;
+    }
+
+
+    .masa-a4 {
+
+        width: 210mm;
+        height: 297mm;
+
+        min-width: 210mm;
+        min-height: 297mm;
+
+        max-width: none;
+        max-height: none;
+
+        margin: 0;
+        padding:
+                14mm
+                13mm
+                11mm
+                13mm;
+
+        box-shadow: none;
+
+        overflow: hidden;
+
+        page-break-before: avoid;
+        page-break-after: avoid;
+        break-before: avoid;
+        break-after: avoid;
+    }
+
+
+    /*
+       Estetään yksittäisten elementtien
+       siirtyminen omalle tulostussivulle.
+    */
+
+    .masa-header,
+    .masa-content,
+    .masa-top,
+    .masa-lower-text,
+    .masa-gallery,
+    .masa-gallery figure {
+
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+
+    /*
+       Tulostuksessa linkkien ympärille ei tule
+       selaimen omia tyylejä.
+    */
+
+    .masa-contact a {
+
+        color: #111;
+
+        text-decoration: none;
+    }
+}
