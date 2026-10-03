@@ -257,8 +257,7 @@ body {
 
 
 /*
-   Sivuston osoite ja sähköposti
-   asiakkaan pyynnön mukaisesti pienillä kirjaimilla.
+   Sivuston osoite ja sähköposti pienillä kirjaimilla.
 */
 
 .masa-contact a {
@@ -299,11 +298,11 @@ body {
 
     grid-template-columns:
         minmax(0, 1fr)
-        31%;
+        35%;
 
-    column-gap: 6mm;
+    column-gap: 5mm;
 
-    align-items: start;
+    align-items: stretch;
 
     width: 100%;
 }
@@ -344,14 +343,6 @@ body {
 }
 
 
-/*
-   Ensimmäinen rivi on asiakkaan mallin mukainen:
-
-   OLEN 79-VUOTIAS ÄIJÄ.
-
-   KOULUTUKSELTANI tulee vasta seuraavalle riville.
-*/
-
 .masa-text p:first-child {
 
     margin-top: 0;
@@ -366,7 +357,7 @@ body {
 
     width: 100%;
 
-    margin: 1mm 0 0 0;
+    margin: 0;
     padding: 0;
 
     border: 2px solid #111;
@@ -374,6 +365,8 @@ body {
     overflow: hidden;
 
     background: #fff;
+
+    display: flex;
 }
 
 
@@ -382,7 +375,9 @@ body {
     display: block;
 
     width: 100%;
-    height: auto;
+    height: 100%;
+
+    object-fit: cover;
 
     margin: 0;
     padding: 0;
@@ -415,11 +410,11 @@ body {
         minmax(0, 1fr)
         minmax(0, 1fr);
 
-    gap: 5mm;
+    gap: 6mm;
 
     width: 100%;
 
-    margin: 3mm 0 0 0;
+    margin: 4mm 0 0 0;
 
     padding: 0;
 }
@@ -443,7 +438,9 @@ body {
     display: block;
 
     width: 100%;
-    height: auto;
+    height: 64mm;
+
+    object-fit: cover;
 
     margin: 0;
     padding: 0;
@@ -460,7 +457,7 @@ body {
 
 .masa-gallery figcaption {
 
-    margin: 1.5mm 0 0 0;
+    margin: 2mm 0 0 0;
     padding: 0;
 
     text-align: center;
@@ -509,15 +506,7 @@ body {
 
     .masa-a4 {
 
-        /*
-           A4 käyttää koko käytettävissä olevan leveyden.
-        */
-
         width: 100vw;
-
-        /*
-           210 / 297 = A4-kuvasuhde
-        */
 
         height: calc(100vw * 297 / 210);
 
@@ -557,6 +546,12 @@ body {
     .corner-br {
 
         border-width: 4px;
+    }
+
+    .masa-gallery img {
+
+        height: auto;
+        aspect-ratio: 16 / 11;
     }
 }
 
@@ -626,6 +621,12 @@ body {
         gap: 3mm;
     }
 
+    .masa-gallery img {
+
+        height: auto;
+        aspect-ratio: 16 / 11;
+    }
+
 
     .masa-gallery figcaption {
 
@@ -639,10 +640,6 @@ body {
    ============================================================ */
 
 @media print {
-
-    /*
-       Tulostimen oletusmarginaalit pois.
-    */
 
     @page {
 
@@ -716,11 +713,6 @@ body {
     }
 
 
-    /*
-       Estetään yksittäisten elementtien
-       siirtyminen omalle tulostussivulle.
-    */
-
     .masa-header,
     .masa-content,
     .masa-top,
@@ -732,11 +724,6 @@ body {
         page-break-inside: avoid;
     }
 
-
-    /*
-       Tulostuksessa linkkien ympärille ei tule
-       selaimen omia tyylejä.
-    */
 
     .masa-contact a {
 
