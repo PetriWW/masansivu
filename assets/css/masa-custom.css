@@ -4,10 +4,9 @@
 
    Tavoite:
    - yksi A4-pystyarkki
-   - tarkka A4-kuvasuhde
-   - sisältö skaalautuu kokonaisuutena
-   - tulostuu yhdelle A4-sivulle
-   - mobiilissa koko A4 säilyy
+   - tarkka A4-kuvasuhde tietokoneella
+   - tulostuu tasan yhdelle A4-sivulle
+   - puhelimella esimerkin mukainen, siisti ja luettava
    ============================================================ */
 
 
@@ -47,7 +46,7 @@ body {
 
 
 /* ============================================================
-   A4-ALUE
+   A4-ALUE (TIETOKONE)
    ============================================================ */
 
 #masa-hero {
@@ -65,14 +64,6 @@ body {
     background: #d0d0d0;
 }
 
-
-/*
-   TÄRKEÄ:
-
-   A4 = 210 × 297
-
-   aspect-ratio pitää sivun aina oikeassa suhteessa.
-*/
 
 .masa-a4 {
 
@@ -105,7 +96,7 @@ body {
 
 
 /* ============================================================
-   KEHYS
+   KEHYS (TIETOKONE)
    ============================================================ */
 
 .masa-frame {
@@ -126,7 +117,7 @@ body {
 
 
 /* ============================================================
-   NURKKAKORISTEET
+   NURKKAKORISTEET (TIETOKONE)
    ============================================================ */
 
 .corner {
@@ -144,45 +135,30 @@ body {
 
 
 /* YLÄVASEN */
-
 .corner-tl {
-
     top: -3px;
     left: -3px;
-
     border-width: 6px 0 0 6px;
 }
 
-
 /* YLÄOIKEA */
-
 .corner-tr {
-
     top: -3px;
     right: -3px;
-
     border-width: 6px 6px 0 0;
 }
 
-
 /* ALA-VASEN */
-
 .corner-bl {
-
     bottom: -3px;
     left: -3px;
-
     border-width: 0 0 6px 6px;
 }
 
-
 /* ALA-OIKEA */
-
 .corner-br {
-
     bottom: -3px;
     right: -3px;
-
     border-width: 0 6px 6px 0;
 }
 
@@ -255,10 +231,6 @@ body {
     text-transform: uppercase;
 }
 
-
-/*
-   Sivuston osoite ja sähköposti pienillä kirjaimilla.
-*/
 
 .masa-contact a {
 
@@ -458,6 +430,7 @@ body {
 .masa-gallery figcaption {
 
     margin: 2mm 0 0 0;
+
     padding: 0;
 
     text-align: center;
@@ -482,161 +455,177 @@ body {
 
 
 /* ============================================================
-   MOBIILI
+   MOBIILI (KORJATTU MATIN SKITSIN MUKAAN)
    ============================================================ */
 
 @media screen and (max-width: 700px) {
 
     #masa-hero {
-
         width: 100%;
-
         min-height: 100vh;
-
-        padding: 0;
-
+        padding: 14px 8px;
         display: flex;
-
         justify-content: center;
         align-items: flex-start;
-
-        background: #fff;
+        background: #d0d0d0;
     }
-
 
     .masa-a4 {
-
-        width: 100vw;
-
-        height: calc(100vw * 297 / 210);
-
-        aspect-ratio: 210 / 297;
-
-        padding:
-                14mm
-                13mm
-                11mm
-                13mm;
-
-        box-shadow: none;
+        width: min(100%, 460px);
+        margin: 0 auto;
+        height: auto;
+        aspect-ratio: auto;
+        overflow: visible;
+        padding: 16px 12px 20px 12px;
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
     }
 
-
     .masa-frame {
-
-        left: 3mm;
-        right: 3mm;
-        top: 3mm;
-        bottom: 3mm;
-
+        left: 4px;
+        right: 4px;
+        top: 4px;
+        bottom: 4px;
         border-width: 3px;
     }
 
-
+    /* Vauraammat ja selkeät kulmat */
     .corner {
-
-        width: 11mm;
-        height: 11mm;
+        width: 24px;
+        height: 24px;
     }
 
+    .corner-tl {
+        top: -3px;
+        left: -3px;
+        border-width: 5px 0 0 5px;
+    }
 
-    .corner-tl,
-    .corner-tr,
-    .corner-bl,
+    .corner-tr {
+        top: -3px;
+        right: -3px;
+        border-width: 5px 5px 0 0;
+    }
+
+    .corner-bl {
+        bottom: -3px;
+        left: -3px;
+        border-width: 0 0 5px 5px;
+    }
+
     .corner-br {
-
-        border-width: 4px;
+        bottom: -3px;
+        right: -3px;
+        border-width: 0 5px 5px 0;
     }
-
-    .masa-gallery img {
-
-        height: auto;
-        aspect-ratio: 16 / 11;
-    }
-}
-
-
-/* ============================================================
-   PIENI PUHELIN
-   ============================================================ */
-
-@media screen and (max-width: 430px) {
-
-    .masa-a4 {
-
-        padding:
-                13mm
-                11mm
-                10mm
-                11mm;
-    }
-
 
     .masa-header h1 {
-
-        font-size: 6.5mm;
-
-        margin-bottom: 5mm;
+        font-size: 20px;
+        margin-bottom: 8px;
     }
-
 
     .masa-contact {
-
-        font-size: 3.05mm;
-
-        line-height: 1.22;
+        font-size: 9.8px;
+        line-height: 1.25;
     }
-
 
     .masa-content {
-
-        margin-top: 4mm;
+        margin-top: 8px;
     }
 
-
+    /* Palstajako: 65% teksti, 35% kuva (kuten työpöydällä) */
     .masa-top {
-
-        column-gap: 4mm;
+        grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
+        column-gap: 8px;
+        align-items: stretch;
     }
 
+    /* Fonttikoko mitoitettu niin, etteivät lauseet katkeile */
+    .masa-text {
+        font-size: 8.8px;
+        line-height: 1.18;
+    }
 
-    .masa-text,
+    .masa-text p {
+        margin-bottom: 7px;
+    }
+
+    .masa-side-image {
+        width: 100%;
+        margin: 0;
+    }
+
+    .masa-side-image img {
+        height: 100%;
+        object-fit: cover;
+    }
+
     .masa-lower-text {
-
-        font-size: 3.15mm;
-
-        line-height: 1.14;
+        font-size: 9px;
+        line-height: 1.18;
+        margin-top: 5px;
     }
 
-
-    .masa-text p,
     .masa-lower-text p {
-
-        margin-bottom: 3.4mm;
+        margin-bottom: 6px;
     }
 
-
+    /* Kookkaat ja näyttävät alakuvat */
     .masa-gallery {
-
-        gap: 3mm;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        margin-top: 8px;
     }
 
     .masa-gallery img {
-
         height: auto;
-        aspect-ratio: 16 / 11;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
     }
 
-
     .masa-gallery figcaption {
-
-        font-size: 2.45mm;
+        font-size: 9px;
+        margin-top: 4px;
     }
 }
 
 
 /* ============================================================
-   TULOSTUS
+   PIENI PUHELIN (ALLE 380px)
+   ============================================================ */
+
+@media screen and (max-width: 380px) {
+
+    .masa-a4 {
+        padding: 14px 10px 16px 10px;
+    }
+
+    .masa-header h1 {
+        font-size: 17px;
+        margin-bottom: 6px;
+    }
+
+    .masa-contact {
+        font-size: 8.8px;
+    }
+
+    .masa-text {
+        font-size: 8px;
+        line-height: 1.16;
+    }
+
+    .masa-lower-text {
+        font-size: 8.2px;
+        line-height: 1.16;
+    }
+
+    .masa-gallery figcaption {
+        font-size: 8px;
+    }
+}
+
+
+/* ============================================================
+   TULOSTUS (Tasan 1 sivu)
    ============================================================ */
 
 @media print {
