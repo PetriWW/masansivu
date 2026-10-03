@@ -7,6 +7,7 @@
    - tarkka A4-kuvasuhde tietokoneella
    - tulostuu tasan yhdelle A4-sivulle
    - puhelimella esimerkin mukainen, siisti ja luettava
+   - vauraampi, käsityöläisyyttä henkivä kehys ja arvokas tausta
    ============================================================ */
 
 
@@ -29,7 +30,8 @@ body {
     width: 100%;
     min-height: 100%;
 
-    background: #d0d0d0;
+    /* Lämmin, arvokas taustasävy kalsean betoninharmaan sijaan */
+    background: #e4e1db;
 
     font-family:
             Arial,
@@ -55,13 +57,13 @@ body {
     min-height: 100vh;
 
     margin: 0;
-    padding: 20px;
+    padding: 24px;
 
     display: flex;
     justify-content: center;
     align-items: flex-start;
 
-    background: #d0d0d0;
+    background: #e4e1db;
 }
 
 
@@ -71,7 +73,7 @@ body {
 
     width: min(
             210mm,
-            calc(100vw - 40px)
+            calc(100vw - 48px)
     );
 
     aspect-ratio: 210 / 297;
@@ -91,23 +93,24 @@ body {
     color: #111;
 
     box-shadow:
-            0 8px 25px rgba(0, 0, 0, 0.25);
+            0 10px 30px rgba(0, 0, 0, 0.22);
 }
 
 
 /* ============================================================
-   KEHYS (TIETOKONE)
+   KEHYS (TIETOKONE: DIPLOMIKEHYS)
    ============================================================ */
 
 .masa-frame {
 
     position: absolute;
 
-    left: 4mm;
-    right: 4mm;
-    top: 4mm;
-    bottom: 4mm;
+    left: 4.5mm;
+    right: 4.5mm;
+    top: 4.5mm;
+    bottom: 4.5mm;
 
+    /* Ulompi pääkehys: 4px musta viiva */
     border: 4px solid #111;
 
     pointer-events: none;
@@ -115,17 +118,29 @@ body {
     z-index: 10;
 }
 
+/* Sisäkehys: Hieno 1px sisäviiva luomaan arvokkaan arkkitehtiraamituksen */
+.masa-frame::after {
+    content: "";
+    position: absolute;
+    left: 2mm;
+    right: 2mm;
+    top: 2mm;
+    bottom: 2mm;
+    border: 1px solid #111;
+    pointer-events: none;
+}
+
 
 /* ============================================================
-   NURKKAKORISTEET (TIETOKONE)
+   NURKKAKORISTEET (TIETOKONE: JYKEVÄT HIRSILIITOKSET)
    ============================================================ */
 
 .corner {
 
     position: absolute;
 
-    width: 14mm;
-    height: 14mm;
+    width: 16mm;
+    height: 16mm;
 
     border-color: #111;
     border-style: solid;
@@ -136,30 +151,30 @@ body {
 
 /* YLÄVASEN */
 .corner-tl {
-    top: -3px;
-    left: -3px;
-    border-width: 6px 0 0 6px;
+    top: -4px;
+    left: -4px;
+    border-width: 7px 0 0 7px;
 }
 
 /* YLÄOIKEA */
 .corner-tr {
-    top: -3px;
-    right: -3px;
-    border-width: 6px 6px 0 0;
+    top: -4px;
+    right: -4px;
+    border-width: 7px 7px 0 0;
 }
 
 /* ALA-VASEN */
 .corner-bl {
-    bottom: -3px;
-    left: -3px;
-    border-width: 0 0 6px 6px;
+    bottom: -4px;
+    left: -4px;
+    border-width: 0 0 7px 7px;
 }
 
 /* ALA-OIKEA */
 .corner-br {
-    bottom: -3px;
-    right: -3px;
-    border-width: 0 6px 6px 0;
+    bottom: -4px;
+    right: -4px;
+    border-width: 0 7px 7px 0;
 }
 
 
@@ -467,7 +482,7 @@ body {
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        background: #d0d0d0;
+        background: #e4e1db;
     }
 
     .masa-a4 {
@@ -477,7 +492,7 @@ body {
         aspect-ratio: auto;
         overflow: visible;
         padding: 16px 12px 20px 12px;
-        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.25);
+        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
     }
 
     .masa-frame {
@@ -488,7 +503,14 @@ body {
         border-width: 3px;
     }
 
-    /* Vauraammat ja selkeät kulmat */
+    .masa-frame::after {
+        left: 1.5px;
+        right: 1.5px;
+        top: 1.5px;
+        bottom: 1.5px;
+        border-width: 1px;
+    }
+
     .corner {
         width: 24px;
         height: 24px;
@@ -532,14 +554,12 @@ body {
         margin-top: 8px;
     }
 
-    /* Palstajako: 65% teksti, 35% kuva (kuten työpöydällä) */
     .masa-top {
         grid-template-columns: minmax(0, 1.85fr) minmax(0, 1fr);
         column-gap: 8px;
         align-items: stretch;
     }
 
-    /* Fonttikoko mitoitettu niin, etteivät lauseet katkeile */
     .masa-text {
         font-size: 8.8px;
         line-height: 1.18;
@@ -569,7 +589,6 @@ body {
         margin-bottom: 6px;
     }
 
-    /* Kookkaat ja näyttävät alakuvat */
     .masa-gallery {
         grid-template-columns: 1fr 1fr;
         gap: 8px;
@@ -616,6 +635,11 @@ body {
     .masa-lower-text {
         font-size: 8.2px;
         line-height: 1.16;
+    }
+
+    .masa-gallery img {
+        height: auto;
+        aspect-ratio: 4 / 3;
     }
 
     .masa-gallery figcaption {
