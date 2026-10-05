@@ -103,6 +103,7 @@
 					<img
 							src="images/masa.jpg"
 							alt="Matti Salo"
+							title="Klikkaa suurentaaksesi"
 					>
 				</figure>
 
@@ -163,6 +164,7 @@
 					<img
 							src="images/thumbs/IMGP1381.JPG"
 							alt="Villa-Marma foorumi"
+							title="Klikkaa suurentaaksesi"
 					>
 					<figcaption>
 						VILLA-MARMA FOORUMI
@@ -174,6 +176,7 @@
 					<img
 							src="images/thumbs/1605271540_IMG_3670.jpg"
 							alt="Villan makuuhuone"
+							title="Klikkaa suurentaaksesi"
 					>
 					<figcaption>
 						VILLAN MAKUUHUONE
@@ -187,6 +190,55 @@
 	</section>
 
 </main>
+
+
+<!-- =====================================================
+     KUVAN SUURENNUS (MODAALI-IKKUNA)
+     ===================================================== -->
+
+<div id="masa-modal" class="masa-modal" aria-hidden="true" role="dialog">
+	<button type="button" class="masa-modal-close" aria-label="Sulje">&times;</button>
+	<img id="masa-modal-img" class="masa-modal-content" src="" alt="">
+	<div id="masa-modal-caption" class="masa-modal-caption"></div>
+</div>
+
+<script>
+	const modal = document.getElementById('masa-modal');
+	const modalImg = document.getElementById('masa-modal-img');
+	const modalCaption = document.getElementById('masa-modal-caption');
+	const closeBtn = document.querySelector('.masa-modal-close');
+
+	// Lisätään klikkauskuuntelija kaikille sivun kuville
+	document.querySelectorAll('.masa-side-image img, .masa-gallery img').forEach(img => {
+		img.addEventListener('click', () => {
+			modal.classList.add('active');
+			modal.setAttribute('aria-hidden', 'false');
+			modalImg.src = img.src;
+			modalCaption.textContent = img.alt;
+		});
+	});
+
+	function closeModal() {
+		modal.classList.remove('active');
+		modal.setAttribute('aria-hidden', 'true');
+	}
+
+	closeBtn.addEventListener('click', closeModal);
+
+	// Sulje taustaa klikkaamalla (mutta ei itse kuvaa klikattaessa)
+	modal.addEventListener('click', (e) => {
+		if (e.target !== modalImg) {
+			closeModal();
+		}
+	});
+
+	// Sulje Escape-näppäimellä
+	document.addEventListener('keydown', (e) => {
+		if (e.key === 'Escape' && modal.classList.contains('active')) {
+			closeModal();
+		}
+	});
+</script>
 
 </body>
 </html>

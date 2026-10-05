@@ -1,13 +1,12 @@
 ﻿/* ============================================================
    MASAN PUUTYÖT
-   A4-ETUSIVU
+   A4-ETUSIVU (MODERNI ARKKITEHTI- JA ARTESAANITYYLI)
 
-   Tavoite:
-   - yksi A4-pystyarkki
-   - tarkka A4-kuvasuhde tietokoneella
-   - tulostuu tasan yhdelle A4-sivulle
-   - puhelimella esimerkin mukainen, siisti ja luettava
-   - vauraampi, käsityöläisyyttä henkivä kehys ja arvokas tausta
+   - Säilyttää 100% Matin vaatiman A4-rakenteen ja mitat
+   - Moderni optinen typografia ja väriteoria
+   - Monitasoinen luonnollinen syvyys ja paperituntuma
+   - Kuvan suurennus (modaali) sisäänrakennettuna
+   - Tulostuu tasan yhdelle A4-sivulle
    ============================================================ */
 
 
@@ -19,6 +18,9 @@
 *::before,
 *::after {
     box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
 }
 
 
@@ -30,15 +32,19 @@ body {
     width: 100%;
     min-height: 100%;
 
-    /* Lämmin, arvokas taustasävy kalsean betoninharmaan sijaan */
-    background: #e4e1db;
+    background: #e6e3dd;
 
     font-family:
+            system-ui,
+            -apple-system,
+            BlinkMacSystemFont,
+            "Segoe UI",
+            Roboto,
+            "Helvetica Neue",
             Arial,
-            Helvetica,
             sans-serif;
 
-    color: #111;
+    color: #1a1917;
 }
 
 
@@ -57,13 +63,13 @@ body {
     min-height: 100vh;
 
     margin: 0;
-    padding: 24px;
+    padding: 28px 16px;
 
     display: flex;
     justify-content: center;
     align-items: flex-start;
 
-    background: #e4e1db;
+    background: radial-gradient(circle at 50% 30%, #edeae4 0%, #dbd7cf 100%);
 }
 
 
@@ -73,14 +79,14 @@ body {
 
     width: min(
             210mm,
-            calc(100vw - 48px)
+            calc(100vw - 40px)
     );
 
     aspect-ratio: 210 / 297;
 
     flex: 0 0 auto;
 
-    background: #fff;
+    background: #fdfbf7;
 
     overflow: hidden;
 
@@ -90,15 +96,18 @@ body {
             11mm
             13mm;
 
-    color: #111;
+    color: #1a1917;
 
     box-shadow:
-            0 10px 30px rgba(0, 0, 0, 0.22);
+            0 1px 2px rgba(26, 25, 23, 0.05),
+            0 4px 12px rgba(26, 25, 23, 0.08),
+            0 16px 36px -4px rgba(26, 25, 23, 0.16),
+            0 30px 60px -10px rgba(26, 25, 23, 0.12);
 }
 
 
 /* ============================================================
-   KEHYS (TIETOKONE: DIPLOMIKEHYS)
+   KEHYS (ARVOKAS DIPLOMIKEHYS)
    ============================================================ */
 
 .masa-frame {
@@ -110,15 +119,13 @@ body {
     top: 4.5mm;
     bottom: 4.5mm;
 
-    /* Ulompi pääkehys: 4px musta viiva */
-    border: 4px solid #111;
+    border: 3.5px solid #1a1917;
 
     pointer-events: none;
 
     z-index: 10;
 }
 
-/* Sisäkehys: Hieno 1px sisäviiva luomaan arvokkaan arkkitehtiraamituksen */
 .masa-frame::after {
     content: "";
     position: absolute;
@@ -126,23 +133,23 @@ body {
     right: 2mm;
     top: 2mm;
     bottom: 2mm;
-    border: 1px solid #111;
+    border: 1px solid rgba(26, 25, 23, 0.75);
     pointer-events: none;
 }
 
 
 /* ============================================================
-   NURKKAKORISTEET (TIETOKONE: JYKEVÄT HIRSILIITOKSET)
+   NURKKAKORISTEET (JYKEVÄT HIRSILIITOKSET)
    ============================================================ */
 
 .corner {
 
     position: absolute;
 
-    width: 16mm;
-    height: 16mm;
+    width: 15mm;
+    height: 15mm;
 
-    border-color: #111;
+    border-color: #1a1917;
     border-style: solid;
 
     pointer-events: none;
@@ -153,28 +160,28 @@ body {
 .corner-tl {
     top: -4px;
     left: -4px;
-    border-width: 7px 0 0 7px;
+    border-width: 6.5px 0 0 6.5px;
 }
 
 /* YLÄOIKEA */
 .corner-tr {
     top: -4px;
     right: -4px;
-    border-width: 7px 7px 0 0;
+    border-width: 6.5px 6.5px 0 0;
 }
 
 /* ALA-VASEN */
 .corner-bl {
     bottom: -4px;
     left: -4px;
-    border-width: 0 0 7px 7px;
+    border-width: 0 0 6.5px 6.5px;
 }
 
 /* ALA-OIKEA */
 .corner-br {
     bottom: -4px;
     right: -4px;
-    border-width: 0 7px 7px 0;
+    border-width: 0 6.5px 6.5px 0;
 }
 
 
@@ -201,20 +208,15 @@ body {
 
     text-align: center;
 
-    font-family:
-            Arial,
-            Helvetica,
-            sans-serif;
-
-    font-size: 7mm;
+    font-size: 7.2mm;
 
     line-height: 1;
 
     font-weight: 900;
 
-    letter-spacing: 0;
+    letter-spacing: 0.04em;
 
-    color: #111;
+    color: #1a1917;
 }
 
 
@@ -228,20 +230,15 @@ body {
 
     padding: 0;
 
-    font-family:
-            Arial,
-            Helvetica,
-            sans-serif;
-
     font-size: 3.35mm;
 
-    line-height: 1.27;
+    line-height: 1.28;
 
     font-weight: 700;
 
-    letter-spacing: 0;
+    letter-spacing: 0.02em;
 
-    color: #111;
+    color: #2b2a27;
 
     text-transform: uppercase;
 }
@@ -249,15 +246,21 @@ body {
 
 .masa-contact a {
 
-    color: #111;
+    color: #1a1917;
 
     text-decoration: none;
 
     text-transform: none;
 
-    letter-spacing: 0;
+    letter-spacing: 0.01em;
 
     font-weight: 700;
+
+    transition: opacity 0.2s ease;
+}
+
+.masa-contact a:hover {
+    opacity: 0.7;
 }
 
 
@@ -287,7 +290,7 @@ body {
         minmax(0, 1fr)
         35%;
 
-    column-gap: 5mm;
+    column-gap: 5.5mm;
 
     align-items: stretch;
 
@@ -302,20 +305,15 @@ body {
 .masa-text,
 .masa-lower-text {
 
-    font-family:
-            Arial,
-            Helvetica,
-            sans-serif;
-
     font-size: 3.42mm;
 
-    line-height: 1.16;
+    line-height: 1.17;
 
     font-weight: 700;
 
-    letter-spacing: 0;
+    letter-spacing: 0.018em;
 
-    color: #111;
+    color: #1a1917;
 
     text-transform: uppercase;
 }
@@ -347,13 +345,15 @@ body {
     margin: 0;
     padding: 0;
 
-    border: 2px solid #111;
+    border: 2px solid #1a1917;
 
     overflow: hidden;
 
-    background: #fff;
+    background: #fdfbf7;
 
     display: flex;
+
+    box-shadow: 0 2px 6px rgba(26, 25, 23, 0.08);
 }
 
 
@@ -370,6 +370,15 @@ body {
     padding: 0;
 
     border: 0;
+
+    cursor: zoom-in;
+
+    transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.masa-side-image img:hover {
+    opacity: 0.94;
+    transform: scale(1.02);
 }
 
 
@@ -432,9 +441,20 @@ body {
     margin: 0;
     padding: 0;
 
-    border: 2px solid #111;
+    border: 2px solid #1a1917;
 
-    background: #fff;
+    background: #fdfbf7;
+
+    box-shadow: 0 2px 8px rgba(26, 25, 23, 0.08);
+
+    cursor: zoom-in;
+
+    transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.masa-gallery img:hover {
+    opacity: 0.94;
+    transform: scale(1.02);
 }
 
 
@@ -450,27 +470,91 @@ body {
 
     text-align: center;
 
-    font-family:
-            Arial,
-            Helvetica,
-            sans-serif;
-
     font-size: 2.7mm;
 
     line-height: 1;
 
     font-weight: 900;
 
-    letter-spacing: 0;
+    letter-spacing: 0.04em;
 
-    color: #111;
+    color: #1a1917;
 
     text-transform: uppercase;
 }
 
 
 /* ============================================================
-   MOBIILI (KORJATTU MATIN SKITSIN MUKAAN)
+   MODAALI-IKKUNA (LIGHTBOX)
+   ============================================================ */
+
+.masa-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(18, 17, 16, 0.88);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 24px;
+    box-sizing: border-box;
+    cursor: zoom-out;
+}
+
+.masa-modal.active {
+    display: flex;
+}
+
+.masa-modal-content {
+    max-width: 90vw;
+    max-height: 80vh;
+    border: 2px solid #fff;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    object-fit: contain;
+    cursor: default;
+    border-radius: 2px;
+}
+
+.masa-modal-caption {
+    margin-top: 14px;
+    color: #f5f5f5;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    cursor: default;
+}
+
+.masa-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 24px;
+    background: transparent;
+    border: none;
+    color: #fff;
+    font-size: 38px;
+    font-weight: 300;
+    cursor: pointer;
+    line-height: 1;
+    padding: 4px 10px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.masa-modal-close:hover {
+    transform: scale(1.15);
+    opacity: 0.8;
+}
+
+
+/* ============================================================
+   MOBIILI
    ============================================================ */
 
 @media screen and (max-width: 700px) {
@@ -482,7 +566,7 @@ body {
         display: flex;
         justify-content: center;
         align-items: flex-start;
-        background: #e4e1db;
+        background: #e6e3dd;
     }
 
     .masa-a4 {
@@ -492,7 +576,7 @@ body {
         aspect-ratio: auto;
         overflow: visible;
         padding: 16px 12px 20px 12px;
-        box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+        box-shadow: 0 4px 18px rgba(26, 25, 23, 0.16);
     }
 
     .masa-frame {
@@ -649,82 +733,81 @@ body {
 
 
 /* ============================================================
-   TULOSTUS (Tasan 1 sivu)
+   TULOSTUS (Tasan 1 puhdas A4-sivu)
    ============================================================ */
 
 @media print {
 
     @page {
-
         size: A4 portrait;
-
         margin: 0;
     }
-
 
     html,
     body {
-
         width: 210mm;
         height: 297mm;
-
         margin: 0;
         padding: 0;
-
-        background: #fff;
+        background: #fff !important;
+        color: #000 !important;
     }
 
-
     body {
-
         overflow: hidden;
     }
 
-
     #masa-hero {
-
         width: 210mm;
         height: 297mm;
-
         min-height: 0;
-
         margin: 0;
         padding: 0;
-
         display: block;
-
-        background: #fff;
+        background: #fff !important;
     }
 
-
     .masa-a4 {
-
         width: 210mm;
         height: 297mm;
-
         min-width: 210mm;
         min-height: 297mm;
-
         max-width: none;
         max-height: none;
-
         margin: 0;
         padding:
                 14mm
                 13mm
                 11mm
                 13mm;
-
-        box-shadow: none;
-
+        background: #fff !important;
+        box-shadow: none !important;
         overflow: hidden;
-
         page-break-before: avoid;
         page-break-after: avoid;
         break-before: avoid;
         break-after: avoid;
     }
 
+    .masa-frame {
+        border-color: #000 !important;
+    }
+
+    .masa-frame::after {
+        border-color: #000 !important;
+    }
+
+    .corner {
+        border-color: #000 !important;
+    }
+
+    .masa-side-image,
+    .masa-gallery img {
+        border-color: #000 !important;
+        box-shadow: none !important;
+        cursor: default !important;
+        transform: none !important;
+    }
 
     .masa-header,
     .masa-content,
@@ -732,16 +815,17 @@ body {
     .masa-lower-text,
     .masa-gallery,
     .masa-gallery figure {
-
         break-inside: avoid;
         page-break-inside: avoid;
     }
 
-
     .masa-contact a {
-
-        color: #111;
-
+        color: #000 !important;
         text-decoration: none;
+    }
+
+    /* Varmistetaan, ettei modaali tulostu koskaan */
+    .masa-modal {
+        display: none !important;
     }
 }
