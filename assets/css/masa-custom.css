@@ -1,6 +1,5 @@
 ﻿/* ============================================================
-   MASAN PUUTYÖT - TUOTEKATALOGI (KIRJOITETTU ALUSTA ALKAEN)
-   Täysi 1:1 vastaavuus Masan kynällä piirrettyjen PDF-mallien kanssa.
+   MASAN PUUTYÖT - TUOTEKATALOGI (LOPULLINEN VIIMEISTELY)
    ============================================================ */
 
 *,
@@ -293,25 +292,26 @@ figcaption {
     height: 215mm;
 }
 
-/* Erikoiskellojen yhtenäinen sivu (Sivu 7) */
+/* Sivu 7: 4 isoa kelloa (2x2 ruudukko, täyttää sivun täydellisesti) */
 .gallery-master-clock {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr 1fr;
-    gap: 2.5mm 4mm;
+    gap: 3mm 4mm;
     width: 100%;
     margin: 2mm 0 0 0;
-    height: 112mm;
+    height: 165mm;
 }
 
+/* Sivu 8: Symbolikellot (suuremmat kuvat) */
 .gallery-symbols {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr 1fr;
-    gap: 2mm 3mm;
+    gap: 2.5mm 3.5mm;
     width: 100%;
     margin: 2mm 0 0 0;
-    height: 85mm;
+    height: 125mm;
 }
 
 /* ============================================================
